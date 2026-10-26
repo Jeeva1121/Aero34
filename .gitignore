@@ -1,0 +1,38 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies and Build Output
+node_modules
+dist
+dist-ssr
+
+# Environment Variables & Secrets (CRITICAL SECURITY)
+.env
+.env.*
+!.env.example
+*.local
+
+# Production Source Maps (Prevents Source Leak)
+*.map
+
+# Editor and OS directories
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+
+# Root screenshots and temp duplicates
+/image*.png
+/7000322_Tourism_Travel_1920x1080.mp4
