@@ -96,8 +96,8 @@ export default function WindowHero({ onExploreNext }) {
         {/* Full-view authentic passenger cabin window photo */}
         <div ref={windowWrapperRef} className="window-hero-full-rig">
           <img
-            src="/hero-window-nyc.png"
-            alt="Commercial airliner passenger window looking out at New York City, Statue of Liberty, and Manhattan skyline"
+            src="/hero-window-nyc-liberty.png"
+            alt="Commercial airliner passenger window looking out at New York City, Statue of Liberty, Brooklyn Bridge, and Manhattan skyline"
             loading="eager"
             decoding="async"
             className="passenger-window-backdrop-img"
