@@ -2231,42 +2231,43 @@ a {
   z-index: 5;
 }
 
-/* TWO PURE WHITE CLOUDS PARTING SIDEWAYS AT BOTTOM */
+/* TWO PURE WHITE CLOUDS PARTING SIDEWAYS AT BOTTOM (CLEAR & VISIBLE) */
 .window-parting-clouds-wrapper {
   position: absolute;
-  bottom: -50px;
+  bottom: -20px;
   left: 0;
   right: 0;
   width: 100vw;
-  height: 20vh;
-  min-height: 140px;
+  height: 42vh;
+  min-height: 320px;
   pointer-events: none;
   z-index: 20;
   overflow: visible;
-  opacity: 0.5;
+  opacity: 1; /* 100% Full Clarity */
 }
 
 .parting-cloud {
   position: absolute;
-  bottom: -35px;
+  bottom: -20px;
   pointer-events: none;
   will-change: transform, opacity;
   transform: translateZ(0);
   backface-visibility: hidden;
-  filter: none !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 -6px 20px rgba(0, 0, 0, 0.25));
 }
 
 .parting-cloud-left {
-  left: -8%;
-  width: 62vw;
-  min-width: 650px;
+  left: -6%;
+  width: 60vw;
+  min-width: 620px;
   max-width: 1050px;
 }
 
 .parting-cloud-right {
-  right: -8%;
-  width: 64vw;
-  min-width: 700px;
+  right: -6%;
+  width: 62vw;
+  min-width: 660px;
   max-width: 1100px;
 }
 
