@@ -2234,15 +2234,16 @@ a {
 /* TWO PURE WHITE CLOUDS PARTING SIDEWAYS AT BOTTOM */
 .window-parting-clouds-wrapper {
   position: absolute;
-  bottom: -40px;
+  bottom: -50px;
   left: 0;
   right: 0;
   width: 100vw;
-  height: 48vh;
-  min-height: 350px;
+  height: 20vh;
+  min-height: 140px;
   pointer-events: none;
   z-index: 20;
   overflow: visible;
+  opacity: 0.5;
 }
 
 .parting-cloud {
