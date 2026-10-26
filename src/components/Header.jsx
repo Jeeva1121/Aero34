@@ -155,7 +155,7 @@ export default function Header({
       className={`site-header ${isVisible ? 'visible' : 'hidden'}`}
       role="banner"
     >
-      {/* Brand Mark with User Logo (Text removed as requested) */}
+      {/* Brand Mark with User Logo (Text completely removed) */}
       <div
         className="brand-block"
         onClick={() => onNavigate('window')}
