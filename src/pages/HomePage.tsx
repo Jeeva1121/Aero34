@@ -62,9 +62,9 @@ export const HomePage: React.FC = () => {
       if (heroPhoto) {
         tl.fromTo(
           heroPhoto,
-          { scale: 1.2, filter: 'blur(16px)' },
-          { scale: 1, filter: 'blur(0px)', duration: 1.3, ease: 'expo.out' },
-          '-=0.6'
+          { scale: 1.08, filter: 'blur(4px)' },
+          { scale: 1, filter: 'blur(0px)', duration: 1.0, ease: 'expo.out' },
+          '-=0.5'
         );
       }
 
@@ -72,23 +72,23 @@ export const HomePage: React.FC = () => {
         const words = heroHeadline.querySelectorAll('.hero-word');
         tl.fromTo(
           words,
-          { yPercent: 110, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 1.1, stagger: 0.08, ease: 'expo.out' },
-          '-=1.0'
+          { yPercent: 100, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.9, stagger: 0.06, ease: 'expo.out' },
+          '-=0.8'
         );
       }
 
       // 2. Pinned Hero with scrub 1
-      if (heroRef.current && heroPhoto) {
+      if (heroRef.current && heroPhoto && window.innerWidth >= 768) {
         ScrollTrigger.create({
           trigger: heroRef.current,
           start: 'top top',
-          end: '+=100%',
+          end: '+=80%',
           pin: true,
           scrub: 1,
           animation: gsap.timeline()
-            .to(heroPhoto, { scale: 1.12, filter: 'blur(6px)', ease: 'none' }, 0)
-            .to(heroHeadline, { yPercent: -40, opacity: 0.2, ease: 'none' }, 0),
+            .to(heroPhoto, { scale: 1.08, ease: 'none' }, 0)
+            .to(heroHeadline, { yPercent: -30, opacity: 0.3, ease: 'none' }, 0),
         });
       }
 
