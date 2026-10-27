@@ -17,50 +17,30 @@ export const CabinPage: React.FC = () => {
     if (!container) return;
 
     const ctx = gsap.context(() => {
-      // 1. Stacked Overlapping Cards (Desktop only)
+      // Stacked Overlapping Cards (Desktop only)
       if (window.innerWidth >= 768 && stackWrapperRef.current) {
         const cards = gsap.utils.toArray<HTMLElement>('.stack-card');
         cards.forEach((card, i) => {
-          if (i === cards.length - 1) return; // Last card doesn't scale down
+          if (i === cards.length - 1) return;
 
           ScrollTrigger.create({
             trigger: card,
-            start: 'top top',
+            start: 'top 80px',
             endTrigger: cards[i + 1],
-            end: 'top top',
+            end: 'top 80px',
             pin: true,
             pinSpacing: false,
             scrub: true,
             animation: gsap.to(card, {
-              scale: 0.94,
-              opacity: 0.6,
+              scale: 0.96,
+              opacity: 0.8,
               ease: 'none',
             }),
           });
         });
       }
 
-      // 2. Clip-path reveals: inset(100% 0 0 0) to inset(0)
-      const clipItems = gsap.utils.toArray<HTMLElement>('.clip-reveal-item');
-      clipItems.forEach((item, idx) => {
-        const isAlternate = idx % 2 === 1;
-        gsap.fromTo(
-          item,
-          { clipPath: isAlternate ? 'inset(0 100% 0 0)' : 'inset(100% 0 0 0)' },
-          {
-            clipPath: 'inset(0% 0 0 0)',
-            ease: 'none',
-            scrollTrigger: {
-              trigger: item,
-              start: 'top 85%',
-              end: 'top 35%',
-              scrub: true,
-            },
-          }
-        );
-      });
-
-      // 3. Cloud Parting Scrub: 3 transparent cloud cutouts moving in opposite xPercent directions
+      // Cloud Parting Scrub: 3 transparent cloud cutouts moving in opposite xPercent directions
       if (cloudSectionRef.current && cloud1Ref.current && cloud2Ref.current && cloud3Ref.current) {
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -76,7 +56,7 @@ export const CabinPage: React.FC = () => {
           .to(cloud3Ref.current, { xPercent: -30, ease: 'none' }, 0);
       }
 
-      // 4. Marquee with velocity-driven timeScale and skewX
+      // Marquee with velocity-driven timeScale and skewX
       if (marqueeTrackRef.current) {
         const marqueeTween = gsap.to(marqueeTrackRef.current, {
           xPercent: -50,
@@ -88,8 +68,8 @@ export const CabinPage: React.FC = () => {
         ScrollTrigger.create({
           onUpdate: (self) => {
             const velocity = self.getVelocity();
-            const skew = Math.min(12, Math.max(-12, velocity / 180));
-            const timeScale = 1 + Math.abs(velocity / 300);
+            const skew = Math.min(10, Math.max(-10, velocity / 200));
+            const timeScale = 1 + Math.abs(velocity / 350);
 
             gsap.to(marqueeTween, {
               timeScale: timeScale,
@@ -112,149 +92,152 @@ export const CabinPage: React.FC = () => {
 
   const cabinSpecs = [
     {
-      label: 'ACOUSTIC SUPPRESSION',
-      headline: 'Sub-48 dBA Ambient Decibels at High Cruise',
-      desc: 'Engineered triple-layer acoustic seals and insulated engine pylon dampers reduce interior flight noise to whisper levels. You can converse across the cabin without raising your voice.',
-      photo: '/destinations/inside-airplane-luxury.jpg',
-      stat: '47.8 dBA',
-      statLabel: 'CABIN SOUND MEASUREMENT',
+      label: 'Quiet Cabin Acoustic Sound',
+      headline: 'Whisper-Quiet 48 dB Sound Levels',
+      desc: 'Engineered triple-layer acoustic insulation and isolated engine pylons reduce interior sound to library quietness. You can speak across the suite in normal tones.',
+      photo: '/inside-airplane-luxury.jpg',
+      stat: '47.8 dB',
+      statLabel: 'Interior Decibel Reading',
     },
     {
-      label: 'ATMOSPHERIC REGULATION',
-      headline: '3,800-Foot Equivalent Cabin Pressure',
-      desc: 'Typical commercial flights pressurize cabins to 8,000 feet, causing dehydration and fatigue. Aero 34 airframes maintain an equivalent altitude of 3,800 to 4,100 feet, arriving with zero jet lag.',
-      photo: '/destinations/first-class-suite.jpg',
-      stat: '3,850 FT',
-      statLabel: 'MAXIMUM CABIN ALTITUDE',
+      label: 'Atmospheric Altitude Comfort',
+      headline: 'Low 3,850-Foot Equivalent Cabin Pressure',
+      desc: 'Typical commercial planes pressurize cabins to 8,000 feet, which leads to fatigue and dehydration. Our airframes maintain an equivalent altitude of 3,850 feet, ensuring you land feeling rested.',
+      photo: '/first-class-suite.jpg',
+      stat: '3,850 Ft',
+      statLabel: 'Maximum Cabin Altitude',
     },
     {
-      label: 'SURGICAL AIR TURNOVER',
-      headline: '100% Fresh Air Induction Every 120 Seconds',
-      desc: 'Hospital-grade HEPA filters combined with continuous bleed air circulation replace the entire volume of cabin air every two minutes. No stale air recirculation.',
-      photo: '/destinations/dreamliner-cabin.jpg',
-      stat: '120 SEC',
-      statLabel: 'TOTAL AIR RENEWAL CYCLE',
+      label: 'Continuous Air Renewal',
+      headline: '100% Fresh Air Every Two Minutes',
+      desc: 'Hospital-grade HEPA filters combined with continuous fresh bleed-air circulation refresh the entire cabin volume every 120 seconds.',
+      photo: '/dreamliner-cabin.jpg',
+      stat: '120 Sec',
+      statLabel: 'Air Renewal Cycle',
     },
     {
-      label: 'ERGONOMIC SLEEP SUITE',
-      headline: '82-Inch Lie-Flat Mattresses with Thermal Control',
-      desc: 'Custom hand-stitched leather club suites transform into zero-gravity full flat sleeping berths with organic linen bedding and individual zonal climate regulation.',
-      photo: '/destinations/sky-dining-luxury.jpg',
-      stat: '82.5 IN',
-      statLabel: 'FULL EXTENSION LENGTH',
+      label: 'Ergonomic Sleeping Berths',
+      headline: '82-Inch Lie-Flat Beds with Climate Control',
+      desc: 'Handcrafted leather executive seats convert smoothly into fully flat sleeping berths with custom bedding and individual micro-climate temperature settings.',
+      photo: '/sky-dining-luxury.jpg',
+      stat: '82.5 In',
+      statLabel: 'Full Bed Length',
     },
   ];
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#EEEBE4]">
+    <div ref={containerRef} className="min-h-screen bg-white">
       {/* Header Section */}
-      <section className="pt-20 pb-16 hairline-b">
-        <div className="grid-12">
-          <div className="col-span-12 md:col-span-8">
-            <span className="micro-label text-[#E8431A]">Cabin Specifications</span>
-            <h1 className="font-display text-5xl md:text-8xl mt-3 tracking-tight">
-              Quiet Space. Pure Fresh Air.
+      <section className="pt-16 pb-12 border-b border-[rgba(10,10,9,0.08)]">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="max-w-3xl">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">
+              Cabin Architecture
+            </span>
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl mt-2 tracking-tight text-[#0A0A09]">
+              Quiet Comfort in the Sky.
             </h1>
-          </div>
-          <div className="col-span-12 md:col-span-4 flex flex-col justify-end mt-6 md:mt-0">
-            <p className="prose-editorial text-sm">
-              Certified for continuous long-haul flight across all oceanic airspaces. Every layout adheres to Gulfstream and Bombardier executive standards.
+            <p className="text-sm sm:text-base text-[#0A0A09]/75 mt-4 leading-relaxed">
+              Every cabin is engineered for continuous long-haul flight across oceans. Unmatched acoustic quietness, low cabin altitude, and private lie-flat suites.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Marquee with Velocity Skew */}
-      <div className="py-6 hairline-b bg-[#0A0A09] text-[#EEEBE4] overflow-hidden whitespace-nowrap">
-        <div ref={marqueeTrackRef} className="flex gap-12 text-sm uppercase tracking-widest tabular font-semibold">
-          <span>• 48 dBA Quiet Cabin</span>
-          <span>• 3,850 FT Cabin Altitude</span>
-          <span>• Fresh Air Every 120s</span>
-          <span>• 82&quot; Lie-Flat Suites</span>
-          <span>• High-Speed Satellite Datalink</span>
-          <span>• 48 dBA Quiet Cabin</span>
-          <span>• 3,850 FT Cabin Altitude</span>
-          <span>• Fresh Air Every 120s</span>
-          <span>• 82&quot; Lie-Flat Suites</span>
+      {/* Modern Velocity Marquee */}
+      <div className="py-4 border-b border-[rgba(10,10,9,0.08)] bg-[#0A0A09] text-white overflow-hidden whitespace-nowrap">
+        <div ref={marqueeTrackRef} className="flex gap-10 text-xs uppercase tracking-widest font-semibold">
+          <span>• 48 dB WHISPER SOUND</span>
+          <span>• 3,850 FT CABIN ALTITUDE</span>
+          <span>• 100% FRESH AIR RENEWAL</span>
+          <span>• 82-INCH LIE-FLAT SUITES</span>
+          <span>• HIGH-SPEED SATELLITE INTERNET</span>
+          <span>• 48 dB WHISPER SOUND</span>
+          <span>• 3,850 FT CABIN ALTITUDE</span>
+          <span>• 100% FRESH AIR RENEWAL</span>
+          <span>• 82-INCH LIE-FLAT SUITES</span>
         </div>
       </div>
 
-      {/* 1. Stacked Overlapping Cards with Scrub Scale & Alternating Clip Reveals */}
-      <section ref={stackWrapperRef} className="py-24">
-        <div className="grid-12">
-          <div className="col-span-12 space-y-16">
-            {cabinSpecs.map((spec) => (
-              <div
-                key={spec.label}
-                className="stack-card clip-reveal-item p-8 md:p-14 hairline-all bg-[#F7F5F0] rounded-none"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                  <div className="md:col-span-6">
-                    <span className="micro-label text-[10px] text-[#E8431A]">{spec.label}</span>
-                    <h2 className="font-display text-3xl md:text-5xl mt-3 mb-6 leading-tight">
-                      {spec.headline}
-                    </h2>
-                    <p className="prose-editorial text-sm text-[var(--ink-80)] mb-8">
-                      {spec.desc}
-                    </p>
+      {/* Stacked Cards Section: Crisp Square Cards */}
+      <section ref={stackWrapperRef} className="py-20 max-w-[1400px] mx-auto px-6">
+        <div className="space-y-12">
+          {cabinSpecs.map((spec) => (
+            <div
+              key={spec.label}
+              className="stack-card p-8 sm:p-12 rounded-none bg-white border border-[rgba(10,10,9,0.12)] shadow-md"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div className="md:col-span-6">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">
+                    {spec.label}
+                  </span>
+                  <h2 className="font-display text-3xl sm:text-4xl mt-2 mb-4 text-[#0A0A09] leading-tight">
+                    {spec.headline}
+                  </h2>
+                  <p className="text-sm text-[#0A0A09]/75 leading-relaxed mb-6">
+                    {spec.desc}
+                  </p>
 
-                    <div className="p-4 hairline-all bg-white inline-block">
-                      <div className="font-display text-4xl tabular text-[var(--signal)]">
-                        {spec.stat}
-                      </div>
-                      <div className="micro-label text-[9px] mt-1 text-[var(--ink-60)]">
-                        {spec.statLabel}
-                      </div>
+                  <div className="p-4 rounded-none bg-[#F9FAFB] border border-[rgba(10,10,9,0.08)] inline-block">
+                    <div className="font-display text-3xl sm:text-4xl font-bold text-[#E8431A]">
+                      {spec.stat}
+                    </div>
+                    <div className="text-[10px] uppercase font-semibold text-[#0A0A09]/60 mt-0.5">
+                      {spec.statLabel}
                     </div>
                   </div>
+                </div>
 
-                  <div className="md:col-span-6 photo-frame h-[360px] md:h-[440px]">
-                    <img src={spec.photo} alt={spec.headline} className="w-full h-full object-cover" />
-                  </div>
+                <div className="md:col-span-6 h-[320px] sm:h-[400px] rounded-none overflow-hidden border border-[rgba(10,10,9,0.08)]">
+                  <img src={spec.photo} alt={spec.headline} className="w-full h-full object-cover" />
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* 2. Cloud Parting Scrub Section */}
+      {/* Cloud Parting Section: Crisp Square Frame */}
       <section
         ref={cloudSectionRef}
-        className="min-h-[85vh] relative overflow-hidden bg-[#0A0A09] text-[#EEEBE4] flex items-center justify-center p-8 hairline-t"
+        className="min-h-[75vh] relative overflow-hidden bg-[#0A0A09] text-white flex items-center justify-center p-8 rounded-none max-w-[1400px] mx-auto my-12 border border-[#0A0A09]"
       >
-        {/* Transparent Clouds parting in opposite xPercent directions */}
         <img
           ref={cloud1Ref}
           src="/cloud-4k-fluffy.png"
-          alt="Atmospheric clouds"
+          alt=""
           className="absolute top-10 left-[-15%] w-[650px] opacity-40 pointer-events-none z-10"
         />
         <img
           ref={cloud2Ref}
           src="/cloud-single.png"
-          alt="Stratospheric cloud formation"
+          alt=""
           className="absolute bottom-10 right-[-15%] w-[750px] opacity-40 pointer-events-none z-10"
         />
         <img
           ref={cloud3Ref}
           src="/clouds.png"
-          alt="High-altitude clouds"
+          alt=""
           className="absolute top-1/2 left-[20%] w-[500px] opacity-20 pointer-events-none z-10"
         />
 
-        {/* Revealed Headline in Center */}
-        <div className="relative z-0 text-center max-w-3xl">
-          <span className="micro-label text-[#E8431A]">High Altitude Clearance</span>
-          <h2 className="font-display text-4xl md:text-7xl mt-4 leading-tight">
+        <div className="relative z-20 text-center max-w-2xl">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">
+            Smooth Cruise
+          </span>
+          <h2 className="font-display text-4xl sm:text-6xl mt-3 text-white leading-tight">
             Above Atmospheric Turbulence.
           </h2>
-          <p className="text-sm md:text-base text-[#EEEBE4]/80 mt-6 max-w-xl mx-auto leading-relaxed">
-            By cruising between FL430 and FL490, flights avoid the commercial flight levels (FL300–FL380), bypassing jet streams, weather fronts, and airway bottlenecks.
+          <p className="text-sm sm:text-base text-white/80 mt-4 leading-relaxed">
+            Cruising at 47,000 feet places flights far above commercial flight lanes and weather storms for peaceful, smooth sleep.
           </p>
           <div className="mt-8">
-            <Link href="/request" className="btn-editorial bg-white text-[#0A0A09] hover:bg-[#E8431A] hover:text-white border-none py-3 px-8 text-xs">
-              <span>Request Charter Dispatch</span>
+            <Link
+              href="/request"
+              className="inline-flex items-center justify-center px-6 py-3.5 rounded-none bg-[#E8431A] text-white hover:bg-white hover:text-[#0A0A09] font-bold text-xs uppercase tracking-wider transition-all duration-200 no-underline shadow-sm"
+            >
+              <span>Request a Seat</span>
             </Link>
           </div>
         </div>

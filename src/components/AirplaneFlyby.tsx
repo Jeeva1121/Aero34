@@ -2,63 +2,41 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const FEATURES = [
-  {
-    title: 'Acoustic Quietness',
-    metric: '48 dBA Quiet Cabin',
-    desc: 'High-bypass turbofans engineered for peaceful, restful journeys across oceans.',
-  },
-  {
-    title: 'Atmospheric Air',
-    metric: '100% Air Renewal',
-    desc: 'Advanced hospital-grade HEPA filtration providing continuous outdoor air renewal every two minutes.',
-  },
-  {
-    title: 'Aeroelastic Wings',
-    metric: 'Smooth High Flight',
-    desc: 'Lightweight composite wings engineered to flex gently and cruise above weather fronts at 47,000 feet.',
-  },
-];
-
 export const AirplaneFlyby: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const airplaneRef = useRef<HTMLDivElement>(null);
-  const cloudBackgroundRef = useRef<HTMLImageElement>(null);
-  const cloudMidgroundRef = useRef<HTMLImageElement>(null);
-  const cloudEndRightRef = useRef<HTMLImageElement>(null);
-  const featuresRef = useRef<HTMLDivElement>(null);
+  const cloudBackRef = useRef<HTMLImageElement>(null);
+  const cloudMidRef = useRef<HTMLImageElement>(null);
+  const cloudFrontRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    const airplane = airplaneRef.current;
+    if (!section || !airplane) return;
 
     const ctx = gsap.context(() => {
-      // Commercial airliner glides smoothly across the horizon as you scroll
-      if (airplaneRef.current) {
-        gsap.fromTo(
-          airplaneRef.current,
-          { x: '16vw', y: '2vh', rotate: 1.5 },
-          {
-            x: '-20vw',
-            y: '-2vh',
-            rotate: -1.2,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1.2,
-            },
-          }
-        );
-      }
+      // Airliner glides forward across the horizon on scroll
+      gsap.fromTo(
+        airplane,
+        { x: '18vw', y: '4vh' },
+        {
+          x: '-22vw',
+          y: '-6vh',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.2,
+          },
+        }
+      );
 
-      // Deep cloud parallax on scroll
-      if (cloudBackgroundRef.current) {
-        gsap.to(cloudBackgroundRef.current, {
-          xPercent: -22,
+      // Deep cloud layer parallax
+      if (cloudBackRef.current) {
+        gsap.to(cloudBackRef.current, {
+          xPercent: -20,
+          yPercent: -5,
           ease: 'none',
           scrollTrigger: {
             trigger: section,
@@ -69,10 +47,10 @@ export const AirplaneFlyby: React.FC = () => {
         });
       }
 
-      // Midground cloud parallax on scroll
-      if (cloudMidgroundRef.current) {
-        gsap.to(cloudMidgroundRef.current, {
-          xPercent: -30,
+      // Midground cloud bank
+      if (cloudMidRef.current) {
+        gsap.to(cloudMidRef.current, {
+          xPercent: -35,
           ease: 'none',
           scrollTrigger: {
             trigger: section,
@@ -83,115 +61,131 @@ export const AirplaneFlyby: React.FC = () => {
         });
       }
 
-      // Right cloud bank parallax on scroll
-      if (cloudEndRightRef.current) {
-        gsap.to(cloudEndRightRef.current, {
-          xPercent: 25,
+      // Foreground cloud drift
+      if (cloudFrontRef.current) {
+        gsap.to(cloudFrontRef.current, {
+          xPercent: 30,
           yPercent: 10,
           ease: 'none',
           scrollTrigger: {
             trigger: section,
             start: 'top bottom',
             end: 'bottom top',
-            scrub: 1.3,
+            scrub: 1.4,
           },
         });
       }
 
-      // Staggered reveal for Feature Cards
-      if (featuresRef.current) {
-        gsap.fromTo(
-          '.flyby-tilt-col',
-          { opacity: 0, y: 35 },
-          {
-            opacity: 1,
-            y: 0,
-            stagger: 0.12,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: featuresRef.current,
-              start: 'top 90%',
-            },
-          }
-        );
-      }
+      // Feature cards stagger reveal
+      gsap.fromTo(
+        '.flyby-card',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 65%',
+          },
+        }
+      );
     }, section);
 
     return () => ctx.revert();
   }, []);
 
+  const features = [
+    {
+      title: 'Acoustic Silence',
+      metric: '48 dB Sound Level',
+      desc: 'Insulated engine pylons and triple-pane composite windows allow quiet conversation without raised voices.',
+    },
+    {
+      title: 'Pure Cabin Atmosphere',
+      metric: '100% Fresh Air',
+      desc: 'Hospital-grade HEPA filters refresh the entire cabin atmosphere with fresh outdoor air every two minutes.',
+    },
+    {
+      title: 'Smooth Cruise Altitude',
+      metric: '45,000–47,000 Ft',
+      desc: 'Cruising far above commercial airline traffic and storm systems for undisturbed rest and sleep.',
+    },
+  ];
+
   return (
-    <section ref={sectionRef} className="airplane-flyby-section" id="flyby-section">
-      {/* Daylight Sky Blue Backdrop */}
-      <div className="airplane-sky-gradient" aria-hidden="true" />
+    <section
+      ref={sectionRef}
+      id="flyby-section"
+      className="relative min-h-[95vh] w-full overflow-hidden bg-gradient-to-b from-[#87A8C8] via-[#B5CBE0] to-white py-24 flex flex-col justify-between"
+    >
+      {/* Title & Headline */}
+      <div className="relative z-20 max-w-[1400px] mx-auto px-6 text-center pt-8">
+        <span className="inline-block px-3 py-1 text-[11px] font-bold uppercase tracking-wider bg-white/60 backdrop-blur-sm rounded-none border border-black/10 text-[#0A0A09] mb-4">
+          Direct High-Altitude Flight
+        </span>
+        <h2 className="font-display text-4xl sm:text-6xl md:text-7xl text-[#0A0A09] tracking-tight leading-none mb-4">
+          Above the Clouds.
+        </h2>
+        <p className="text-sm md:text-base text-[#0A0A09]/80 max-w-xl mx-auto leading-relaxed">
+          Non-stop private air travel connecting major global cities with guaranteed direct departure slots.
+        </p>
+      </div>
 
-      <div className="airplane-flyby-content-stage">
-        {/* Transition to Flight Header — Clean, Straight, Zero Slashes */}
-        <div className="flyby-header-wrapper">
-          <span className="minimal-eyebrow text-white/80 block mb-2">Cruising Altitude 47,000 Feet</span>
-          <h2 className="flyby-title">TRANSITION TO FLIGHT</h2>
-          <p className="flyby-subtitle">
-            Cruising peacefully above the cloud deck on direct transoceanic routes.
-          </p>
+      {/* Cinematic Clouds & Airliner Stage */}
+      <div className="relative w-full h-[450px] my-4 pointer-events-none overflow-hidden flex items-center justify-center">
+        {/* Background Clouds */}
+        <img
+          ref={cloudBackRef}
+          src="/cloud-4k-fluffy.png"
+          alt=""
+          className="absolute -top-12 left-[-10%] w-[1100px] opacity-60"
+        />
+
+        {/* Midground Billowing Clouds */}
+        <img
+          ref={cloudMidRef}
+          src="/cloud-single.png"
+          alt=""
+          className="absolute bottom-4 -left-20 w-[950px] opacity-75"
+        />
+
+        {/* Gliding Airliner Vessel */}
+        <div ref={airplaneRef} className="relative z-10 w-[420px] sm:w-[540px] md:w-[680px]">
+          <img
+            src="/passenger-airplane.png"
+            alt="Private long-haul airliner cruising smoothly"
+            className="w-full h-auto drop-shadow-2xl"
+          />
+          {/* Subtle Wingtip Vapor Accents */}
+          <div className="absolute top-[38%] left-[-12%] w-[18%] h-[2px] bg-white/60 blur-[1px] transform -rotate-6" />
+          <div className="absolute bottom-[36%] left-[-14%] w-[20%] h-[2px] bg-white/60 blur-[1px] transform rotate-3" />
         </div>
 
-        {/* Cinematic Flight Corridor */}
-        <div className="flight-corridor-stage" aria-hidden="true">
-          {/* Deep Cloud Bank */}
-          <img
-            ref={cloudBackgroundRef}
-            src="/cloud-4k-fluffy.png"
-            alt=""
-            loading="eager"
-            decoding="async"
-            className="flyby-cloud cloud-bg"
-          />
+        {/* Foreground Right Cloud */}
+        <img
+          ref={cloudFrontRef}
+          src="/clouds.png"
+          alt=""
+          className="absolute -bottom-16 -right-24 w-[900px] opacity-80 z-20"
+        />
+      </div>
 
-          {/* Midground Cloud Bank */}
-          <img
-            ref={cloudMidgroundRef}
-            src="/cloud-4k-fluffy.png"
-            alt=""
-            loading="eager"
-            decoding="async"
-            className="flyby-cloud cloud-mid"
-          />
-
-          {/* Commercial Airliner Vessel */}
-          <div ref={airplaneRef} className="passenger-airplane-vessel">
-            <img
-              src="/flight-image.png"
-              alt="Passenger airliner cruising above clouds"
-              loading="eager"
-              decoding="async"
-              className="airplane-img-render"
-            />
-            {/* Aerodynamic Wingtip Vapor */}
-            <div className="wingtip-vapor-line vapor-top" />
-            <div className="wingtip-vapor-line vapor-bottom" />
-          </div>
-
-          {/* Clouds Billowing into the Right Side */}
-          <img
-            ref={cloudEndRightRef}
-            src="/cloud-4k-fluffy.png"
-            alt=""
-            loading="eager"
-            decoding="async"
-            className="flyby-cloud cloud-end-right"
-          />
-        </div>
-
-        {/* Feature Cards Row */}
-        <div ref={featuresRef} className="flyby-features-row">
-          {FEATURES.map((item, idx) => (
-            <div key={idx} className="flyby-tilt-col">
-              <div className="flyby-feature-card">
-                <span className="card-metric-badge">{item.metric}</span>
-                <h4>{item.title}</h4>
-                <p>{item.desc}</p>
+      {/* 3 Modern Feature Cards: Crisp Square Corners */}
+      <div className="relative z-20 max-w-[1400px] mx-auto px-6 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {features.map((f, i) => (
+            <div
+              key={i}
+              className="flyby-card bg-white/95 backdrop-blur-md p-6 sm:p-8 rounded-none border border-[rgba(10,10,9,0.12)] shadow-md hover:shadow-xl transition-all duration-200 hover:-translate-y-1"
+            >
+              <div className="inline-block px-2.5 py-1 text-[11px] font-bold text-[#E8431A] bg-[#E8431A]/10 rounded-none mb-3">
+                {f.metric}
               </div>
+              <h3 className="font-display text-2xl text-[#0A0A09] mb-2">{f.title}</h3>
+              <p className="text-xs sm:text-sm text-[#0A0A09]/75 leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>

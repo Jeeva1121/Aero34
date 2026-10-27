@@ -160,7 +160,7 @@ export const RouteDetailPage: React.FC = () => {
   }
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#EEEBE4]">
+    <div ref={containerRef} className="min-h-screen bg-white">
       {/* Hero Header: Photo Grows into Page Header */}
       <section className="relative h-[65vh] w-full overflow-hidden hairline-b">
         <img
@@ -173,20 +173,20 @@ export const RouteDetailPage: React.FC = () => {
         <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-14 text-white">
           <div className="flex justify-between items-center text-xs tabular uppercase tracking-widest">
             <Link href="/routes" className="hover:text-[#E8431A] transition-colors flex items-center gap-2">
-              ← RETURN TO CORRIDORS
+              ← Return to Routes
             </Link>
-            <span>CORRIDOR CODE: {route.id}</span>
+            <span>{route.region} Flight</span>
           </div>
 
           <div>
-            <span className="micro-label text-white/80">{route.region} Flight</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-white/80">Direct Route</span>
             <h1 className="font-display text-5xl md:text-8xl mt-2 tracking-tight">
               {route.originCity} to {route.destCity}
             </h1>
             <div className="flex gap-6 text-sm tabular mt-4 text-white/90">
               <span>{route.originCode} → {route.destCode}</span>
               <span>•</span>
-              <span className="font-bold text-[#E8431A]">{route.blockTime}</span>
+              <span className="font-bold text-[#E8431A]">{route.blockTime} Direct</span>
               <span>•</span>
               <span>{route.distanceKm.toLocaleString()} KM</span>
             </div>
@@ -198,57 +198,57 @@ export const RouteDetailPage: React.FC = () => {
       <div className="grid-12 py-16">
         {/* Sticky Left Column: Telemetry Facts */}
         <div className="col-span-12 lg:col-span-4 mb-12 lg:mb-0">
-          <div ref={stickyColRef} className="p-8 hairline-all bg-[#F7F5F0]">
-            <span className="micro-label text-[10px]">Flight Specifications</span>
-            <h2 className="font-display text-2xl mt-2 mb-6">{route.aircraft}</h2>
+          <div ref={stickyColRef} className="p-8 rounded-none bg-white border border-[rgba(10,10,9,0.12)] shadow-sm">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Aircraft Specifications</span>
+            <h2 className="font-display text-2xl mt-2 mb-6 text-[#0A0A09]">{route.aircraft}</h2>
 
             <div className="space-y-4 text-xs tabular text-[var(--ink-80)]">
-              <div className="flex justify-between py-2 hairline-b">
-                <span>Flight Time</span>
+              <div className="flex justify-between py-2 border-b border-[rgba(10,10,9,0.08)]">
+                <span className="text-[#0A0A09]/60">Flight Duration</span>
                 <span className="font-bold text-[var(--ink)]">{route.blockTime}</span>
               </div>
-              <div className="flex justify-between py-2 hairline-b">
-                <span>Cruising Altitude</span>
-                <span className="font-bold text-[var(--ink)]">FL{route.altitudeFeet / 1000}0 ({(route.altitudeFeet).toLocaleString()} FT)</span>
+              <div className="flex justify-between py-2 border-b border-[rgba(10,10,9,0.08)]">
+                <span className="text-[#0A0A09]/60">Cruising Altitude</span>
+                <span className="font-bold text-[var(--ink)]">{(route.altitudeFeet).toLocaleString()} Feet</span>
               </div>
-              <div className="flex justify-between py-2 hairline-b">
-                <span>Route Distance</span>
+              <div className="flex justify-between py-2 border-b border-[rgba(10,10,9,0.08)]">
+                <span className="text-[#0A0A09]/60">Flight Distance</span>
                 <span className="font-bold text-[var(--ink)]">{route.distanceKm.toLocaleString()} KM</span>
               </div>
-              <div className="flex justify-between py-2 hairline-b">
-                <span>Certified Seats</span>
-                <span className="font-bold text-[var(--ink)]">{route.totalSeats} SEATS</span>
+              <div className="flex justify-between py-2 border-b border-[rgba(10,10,9,0.08)]">
+                <span className="text-[#0A0A09]/60">Certified Capacity</span>
+                <span className="font-bold text-[var(--ink)]">{route.totalSeats} Passengers</span>
               </div>
-              <div className="flex justify-between py-2 hairline-b">
-                <span>Cabin Layout</span>
+              <div className="flex justify-between py-2 border-b border-[rgba(10,10,9,0.08)]">
+                <span className="text-[#0A0A09]/60">Interior Layout</span>
                 <span className="font-bold text-[var(--ink)] text-right max-w-[180px]">{route.cabinLayout}</span>
               </div>
             </div>
 
-            <div className="mt-8 pt-6 hairline-t">
+            <div className="mt-8 pt-6 border-t border-[rgba(10,10,9,0.08)]">
               <p className="text-xs text-[var(--ink-80)] leading-relaxed mb-6">
                 {route.overview}
               </p>
               <Link
                 href={`/request?route=${route.id}`}
-                className="btn-editorial btn-signal w-full py-3 text-xs text-center"
+                className="w-full py-3 px-6 text-center text-xs font-semibold rounded-none bg-[#E8431A] text-white hover:bg-[#0A0A09] transition-colors duration-200 block no-underline shadow-sm"
               >
-                <span>Request Seats on This Route</span>
+                <span>Request Seats on this Route</span>
               </Link>
             </div>
           </div>
         </div>
 
         {/* Right Column: Availability Calendar & Seat Map */}
-        <div id="right-content-col" className="col-span-12 lg:col-span-8 space-y-16 pl-0 lg:pl-6">
+        <div id="right-content-col" className="col-span-12 lg:col-span-8 space-y-12 pl-0 lg:pl-6">
           {/* Availability Calendar */}
-          <div className="hairline-all p-8 bg-[#F7F5F0]">
+          <div className="p-8 rounded-none bg-white border border-[rgba(10,10,9,0.12)] shadow-sm">
             <div className="flex justify-between items-baseline mb-6">
               <div>
-                <span className="micro-label">Flight Availability</span>
-                <h3 className="font-display text-3xl mt-1">Calendar & Seat Inventory</h3>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Schedule</span>
+                <h3 className="font-display text-3xl mt-1 text-[#0A0A09]">Seat Availability</h3>
               </div>
-              <span className="text-xs tabular text-[var(--ink-60)]">NEXT 60 DAYS</span>
+              <span className="text-xs font-medium text-[#0A0A09]/60">Next 60 Days</span>
             </div>
 
             <div ref={calendarRef} className="grid grid-cols-7 gap-2">
@@ -265,12 +265,12 @@ export const RouteDetailPage: React.FC = () => {
                 return (
                   <div
                     key={day.date}
-                    className={`cal-day p-3 text-center border transition-colors ${
+                    className={`cal-day p-3 text-center rounded-none border transition-colors ${
                       isFull
-                        ? 'border-[var(--ink-12)] bg-[#EEEBE4]/40 opacity-40'
+                        ? 'border-[rgba(10,10,9,0.08)] bg-[#F4F4F5] opacity-40'
                         : isLimited
                         ? 'border-[var(--signal)] bg-[#E8431A]/5'
-                        : 'border-[var(--ink-12)] bg-white hover:border-[var(--ink)]'
+                        : 'border-[rgba(10,10,9,0.12)] bg-white hover:border-[var(--ink)]'
                     }`}
                   >
                     <div className="text-xs font-bold tabular">{dayNum}</div>
@@ -288,30 +288,30 @@ export const RouteDetailPage: React.FC = () => {
               })}
             </div>
 
-            <div className="flex gap-6 mt-6 pt-4 hairline-t text-xs tabular text-[var(--ink-60)]">
+            <div className="flex gap-6 mt-6 pt-4 border-t border-[rgba(10,10,9,0.08)] text-xs tabular text-[var(--ink-60)]">
               <span className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 bg-white border border-[var(--ink-12)]" /> Available
+                <span className="w-2.5 h-2.5 bg-white border border-[rgba(10,10,9,0.2)] rounded-none" /> Available
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 bg-[#E8431A]/20 border border-[var(--signal)]" /> Limited (≤3)
+                <span className="w-2.5 h-2.5 bg-[#E8431A]/20 border border-[var(--signal)] rounded-none" /> Limited (≤3)
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 bg-[#EEEBE4]/60 border border-[var(--ink-12)]" /> Allocated (Full)
+                <span className="w-2.5 h-2.5 bg-[#F4F4F5] border border-[rgba(10,10,9,0.2)] rounded-none" /> Reserved
               </span>
             </div>
           </div>
 
           {/* Interactive SVG Cabin Seat Map */}
-          <div className="hairline-all p-8 bg-[#F7F5F0]">
+          <div className="p-8 rounded-none bg-white border border-[rgba(10,10,9,0.12)] shadow-sm">
             <div className="flex justify-between items-baseline mb-6">
               <div>
-                <span className="micro-label">Cabin Layout</span>
-                <h3 className="font-display text-3xl mt-1">Aircraft Seating Plan</h3>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Interior Map</span>
+                <h3 className="font-display text-3xl mt-1 text-[#0A0A09]">Seating Architecture</h3>
               </div>
-              <span className="text-xs tabular text-[var(--ink-60)]">SCALE 1:50</span>
+              <span className="text-xs font-medium text-[#0A0A09]/60">Scale 1:50</span>
             </div>
 
-            <div className="flex justify-center p-6 bg-white border border-[var(--ink-12)] relative">
+            <div className="flex justify-center p-6 bg-white border border-[rgba(10,10,9,0.12)] relative">
               <svg
                 ref={seatMapRef}
                 viewBox="0 0 320 540"
@@ -333,82 +333,82 @@ export const RouteDetailPage: React.FC = () => {
                 {/* Forward Zone 1 Club Seats */}
                 <g className="seat-row">
                   <rect
-                    x="85" y="130" width="36" height="42" rx="2"
+                    x="85" y="130" width="36" height="42" rx="0"
                     fill={hoveredSeat === '1A' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('1A')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
                   <rect
-                    x="195" y="130" width="36" height="42" rx="2"
+                    x="195" y="130" width="36" height="42" rx="0"
                     fill={hoveredSeat === '1F' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('1F')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
-                  <text x="103" y="156" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">1A</text>
-                  <text x="213" y="156" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">1F</text>
+                  <text x="103" y="156" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">1A</text>
+                  <text x="213" y="156" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">1F</text>
                 </g>
 
                 <g className="seat-row">
                   <rect
-                    x="85" y="195" width="36" height="42" rx="2"
+                    x="85" y="195" width="36" height="42" rx="0"
                     fill={hoveredSeat === '2A' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('2A')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
                   <rect
-                    x="195" y="195" width="36" height="42" rx="2"
+                    x="195" y="195" width="36" height="42" rx="0"
                     fill={hoveredSeat === '2F' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('2F')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
-                  <text x="103" y="221" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">2A</text>
-                  <text x="213" y="221" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">2F</text>
+                  <text x="103" y="221" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">2A</text>
+                  <text x="213" y="221" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">2F</text>
                 </g>
 
                 {/* Mid Zone 2 Conference / Dining Table */}
-                <rect x="125" y="255" width="70" height="50" rx="1" fill="#EEEBE4" stroke="#0A0A09" strokeWidth="1" strokeOpacity="0.4" />
+                <rect x="125" y="255" width="70" height="50" rx="0" fill="#F4F4F5" stroke="#0A0A09" strokeWidth="1" strokeOpacity="0.3" />
                 <text x="160" y="284" fill="#0A0A09" fontSize="9" textAnchor="middle" letterSpacing="0.1em">TABLE</text>
 
                 <g className="seat-row">
                   <rect
-                    x="85" y="260" width="36" height="42" rx="2"
+                    x="85" y="260" width="36" height="42" rx="0"
                     fill={hoveredSeat === '3A' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('3A')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
                   <rect
-                    x="195" y="260" width="36" height="42" rx="2"
+                    x="195" y="260" width="36" height="42" rx="0"
                     fill={hoveredSeat === '3F' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('3F')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
-                  <text x="103" y="286" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">3A</text>
-                  <text x="213" y="286" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">3F</text>
+                  <text x="103" y="286" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">3A</text>
+                  <text x="213" y="286" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">3F</text>
                 </g>
 
                 {/* Rear Zone 3 Private Stateroom Suite */}
                 <g className="seat-row">
                   <rect
-                    x="85" y="340" width="146" height="70" rx="2"
+                    x="85" y="340" width="146" height="70" rx="0"
                     fill={hoveredSeat === 'MASTER-SUITE' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('MASTER-SUITE')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
-                  <text x="158" y="380" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">
-                    MASTER STATEROOM / LIE-FLAT DOUBLE
+                  <text x="158" y="380" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">
+                    MASTER STATEROOM • LIE-FLAT DOUBLE
                   </text>
                 </g>
               </svg>
 
               {hoveredSeat && (
-                <div className="absolute top-4 right-4 bg-[#0A0A09] text-[#EEEBE4] px-3 py-1 text-xs tabular font-bold border border-[#E8431A]">
+                <div className="absolute top-4 right-4 bg-[#0A0A09] text-white px-3 py-1 text-xs tabular font-bold border border-[#E8431A]">
                   SEAT {hoveredSeat}: CONFIRMED LIE-FLAT 82&quot;
                 </div>
               )}
@@ -417,15 +417,15 @@ export const RouteDetailPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 5. Airframe View Section */}
-      <section id="airframe-turn-section" className="min-h-screen hairline-t bg-[#0A0A09] text-[#EEEBE4] flex flex-col justify-between p-12 relative overflow-hidden">
+      {/* 5. Pinned Canvas Airframe Turn Section */}
+      <section id="airframe-turn-section" className="min-h-screen border-t border-[rgba(10,10,9,0.08)] bg-[#0A0A09] text-white flex flex-col justify-between p-12 relative overflow-hidden">
         <div className="flex justify-between items-baseline z-10">
           <div>
-            <span className="micro-label text-white/60">Airframe Perspective</span>
-            <h2 className="font-display text-4xl mt-2 text-white">360° Aircraft View</h2>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">360° Perspective</span>
+            <h2 className="font-display text-4xl mt-2 text-white">Interactive Airframe View</h2>
           </div>
           <div ref={telemetryRef} className="tabular text-xs text-[#E8431A] font-bold">
-            CRUISE FL450 • MACH 0.88
+            HDG 000° • CRUISE FL450 • MACH 0.88
           </div>
         </div>
 
@@ -439,9 +439,9 @@ export const RouteDetailPage: React.FC = () => {
         </div>
 
         <div className="flex justify-between items-center text-xs tabular text-white/50 z-10 pt-4 border-t border-white/10">
-          <span>Aircraft: {route.aircraft}</span>
-          <span>Scroll to rotate airframe</span>
-          <Link href={`/request?route=${route.id}`} className="btn-editorial bg-white text-[#0A0A09] hover:bg-[#E8431A] hover:text-white border-none py-2 px-5">
+          <span>AIRCRAFT: {route.aircraft}</span>
+          <span>PINNED SCRUB 250% • ROTATION TIED TO SCROLL</span>
+          <Link href={`/request?route=${route.id}`} className="btn-editorial bg-white text-[#0A0A09] hover:bg-[#E8431A] hover:text-white border-none py-2 px-5 rounded-none">
             <span>Reserve Route</span>
           </Link>
         </div>

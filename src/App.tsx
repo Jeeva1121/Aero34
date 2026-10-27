@@ -34,21 +34,18 @@ export default function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
     lenis?.scrollTo(0, { immediate: true });
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 50);
-    return () => clearTimeout(timer);
+    ScrollTrigger.refresh();
   }, [location]);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#EEEBE4] text-[#0A0A09] selection:bg-[#E8431A] selection:text-[#EEEBE4]">
+    <div className="min-h-screen flex flex-col justify-between bg-white text-[#0A0A09] selection:bg-[#E8431A] selection:text-white">
       {/* Precision Custom Cursor */}
       <Cursor />
 
       {/* Global Top Scroll Progress Bar */}
       <div id="global-scroll-bar" />
 
-      {/* Primary Navigation */}
+      {/* Modern Navigation Header */}
       <Navigation />
 
       {/* Dynamic Page Router */}
@@ -56,15 +53,11 @@ export default function App() {
         <Switch>
           <Route path="/" component={HomePage} />
           <Route path="/routes" component={RoutesPage} />
-          <Route path="/corridors" component={RoutesPage} />
           <Route path="/routes/:slug" component={RouteDetailPage} />
           <Route path="/cabin" component={CabinPage} />
-          <Route path="/specifications" component={CabinPage} />
           <Route path="/request" component={RequestPage} />
           <Route path="/journal" component={JournalPage} />
-          <Route path="/notes" component={JournalPage} />
           <Route path="/journal/:slug" component={ArticlePage} />
-          <Route path="/notes/:slug" component={ArticlePage} />
           <Route path="/admin" component={AdminPage} />
           <Route path="/privacy" component={PrivacyPage} />
           <Route path="/terms" component={TermsPage} />

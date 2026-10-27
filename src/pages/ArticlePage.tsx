@@ -59,18 +59,18 @@ export const ArticlePage: React.FC = () => {
 
   if (!article) {
     return (
-      <div className="min-h-screen py-32 text-center bg-[#EEEBE4]">
-        <span className="micro-label text-[var(--signal)]">ARTICLE EXCEPTION</span>
-        <h1 className="font-display text-4xl mt-2 mb-6">Field Note Not Found</h1>
-        <Link href="/journal" className="btn-editorial">Return to Field Notes</Link>
+      <div className="min-h-screen py-32 text-center bg-white">
+        <span className="micro-label text-[var(--signal)]">ARTICLE NOT FOUND</span>
+        <h1 className="font-display text-4xl mt-2 mb-6 text-[#0A0A09]">Journal Article Not Found</h1>
+        <Link href="/journal" className="btn-editorial rounded-none">Return to Journal</Link>
       </div>
     );
   }
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#EEEBE4] relative">
+    <div ref={containerRef} className="min-h-screen bg-white relative">
       {/* Top Reading Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-[3px] bg-[var(--ink-12)] z-50 pointer-events-none">
+      <div className="fixed top-0 left-0 w-full h-[3px] bg-[rgba(10,10,9,0.08)] z-50 pointer-events-none">
         <div
           ref={readingBarRef}
           className="h-full bg-[var(--signal)] origin-left w-full"
@@ -83,7 +83,7 @@ export const ArticlePage: React.FC = () => {
         <div className="grid-12">
           <div className="col-span-12 mb-6">
             <Link href="/journal" className="editorial-link text-xs uppercase font-semibold text-[var(--ink-60)]">
-              ← Return to Field Notes
+              ← Return to Journal
             </Link>
           </div>
 
@@ -100,7 +100,7 @@ export const ArticlePage: React.FC = () => {
               <span>•</span>
               <span>READING TIME: {article.readTime}</span>
               <span>•</span>
-              <span>DISPATCH REPOSITORY</span>
+              <span>AERO 34 JOURNAL</span>
             </div>
           </div>
         </div>
@@ -108,8 +108,8 @@ export const ArticlePage: React.FC = () => {
 
       {/* Featured Photo */}
       <div className="grid-12 py-12">
-        <div className="col-span-12 photo-frame h-[50vh] max-h-[550px]">
-          <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+        <div className="col-span-12 photo-frame h-[50vh] max-h-[550px] rounded-none">
+          <img src={article.image} alt={article.title} className="w-full h-full object-cover rounded-none" />
         </div>
       </div>
 
@@ -117,13 +117,13 @@ export const ArticlePage: React.FC = () => {
       <div className="grid-12 py-16">
         {/* Left Column: Pinned Pull Quote */}
         <div className="col-span-12 lg:col-span-4 mb-12 lg:mb-0 pr-0 lg:pr-8">
-          <div ref={pullQuoteRef} className="p-8 hairline-all bg-[#F7F5F0]">
+          <div ref={pullQuoteRef} className="p-8 hairline-all bg-[#F9FAFB] rounded-none">
             <span className="micro-label text-[10px]">CORE PRINCIPLE</span>
             <p className="font-display text-2xl md:text-3xl text-[var(--ink)] mt-3 leading-snug">
               &ldquo;{article.pullQuote}&rdquo;
             </p>
             <div className="mt-4 pt-4 hairline-t text-xs tabular text-[var(--ink-60)]">
-              AERO 34 MONOGRAPH ARCHIVES
+              AERO 34 ARCHIVE
             </div>
           </div>
         </div>
@@ -142,8 +142,8 @@ export const ArticlePage: React.FC = () => {
 
           <div className="pt-12 mt-12 hairline-t flex justify-between items-center text-xs tabular">
             <span className="text-[var(--ink-60)]">FILED UNDER: {article.category}</span>
-            <Link href="/request" className="btn-editorial py-2 px-5 text-xs">
-              <span>Request Route Allocation →</span>
+            <Link href="/request" className="btn-editorial py-2.5 px-6 text-xs rounded-none bg-[#E8431A] text-white hover:bg-[#0A0A09]">
+              <span>Request Seats →</span>
             </Link>
           </div>
         </div>

@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'wouter';
 
 export const PrivacyPage: React.FC = () => (
-  <div className="min-h-screen bg-[#EEEBE4] py-20">
+  <div className="min-h-screen bg-white py-20">
     <div className="grid-12">
       <div className="col-span-12 md:col-span-8 md:col-start-3">
-        <span className="micro-label">GOVERNANCE PROTOCOL</span>
-        <h1 className="font-display text-4xl md:text-6xl mt-2 mb-8">Data Privacy Charter</h1>
+        <span className="micro-label">PRIVACY POLICY</span>
+        <h1 className="font-display text-4xl md:text-6xl mt-2 mb-8 text-[#0A0A09]">Data Privacy Charter</h1>
 
         <div className="space-y-6 text-sm text-[var(--ink-80)] leading-relaxed">
           <p className="font-semibold text-[var(--ink)]">
@@ -27,7 +27,7 @@ export const PrivacyPage: React.FC = () => (
         </div>
 
         <div className="mt-12 pt-8 hairline-t">
-          <Link href="/" className="btn-editorial">Return to Monograph</Link>
+          <Link href="/" className="btn-editorial rounded-none">Return to Home</Link>
         </div>
       </div>
     </div>
@@ -35,11 +35,11 @@ export const PrivacyPage: React.FC = () => (
 );
 
 export const TermsPage: React.FC = () => (
-  <div className="min-h-screen bg-[#EEEBE4] py-20">
+  <div className="min-h-screen bg-white py-20">
     <div className="grid-12">
       <div className="col-span-12 md:col-span-8 md:col-start-3">
-        <span className="micro-label">CONTRACTUAL CONDITIONS</span>
-        <h1 className="font-display text-4xl md:text-6xl mt-2 mb-8">Charter & Seat Terms</h1>
+        <span className="micro-label">TERMS OF SERVICE</span>
+        <h1 className="font-display text-4xl md:text-6xl mt-2 mb-8 text-[#0A0A09]">Charter & Seat Terms</h1>
 
         <div className="space-y-6 text-sm text-[var(--ink-80)] leading-relaxed">
           <p className="font-semibold text-[var(--ink)]">
@@ -60,7 +60,7 @@ export const TermsPage: React.FC = () => (
         </div>
 
         <div className="mt-12 pt-8 hairline-t">
-          <Link href="/" className="btn-editorial">Return to Monograph</Link>
+          <Link href="/" className="btn-editorial rounded-none">Return to Home</Link>
         </div>
       </div>
     </div>
@@ -68,14 +68,14 @@ export const TermsPage: React.FC = () => (
 );
 
 export const NotFoundPage: React.FC = () => (
-  <div className="min-h-screen bg-[#EEEBE4] py-32 text-center flex flex-col justify-center items-center p-6">
-    <span className="micro-label text-[var(--signal)]">HTTP 404 EXCEPTION</span>
-    <h1 className="font-display text-6xl md:text-9xl mt-2 mb-4 tracking-tight">404</h1>
+  <div className="min-h-screen bg-white py-32 text-center flex flex-col justify-center items-center p-6">
+    <span className="micro-label text-[var(--signal)]">PAGE NOT FOUND</span>
+    <h1 className="font-display text-6xl md:text-9xl mt-2 mb-4 tracking-tight text-[#0A0A09]">404</h1>
     <p className="prose-editorial text-sm mb-8">
-      The requested runway vector or dispatch document does not exist in active registry.
+      The requested page or document does not exist.
     </p>
-    <Link href="/" className="btn-editorial">
-      <span>Return to Platform Home</span>
+    <Link href="/" className="btn-editorial rounded-none">
+      <span>Return to Home</span>
     </Link>
   </div>
 );

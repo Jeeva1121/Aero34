@@ -25,7 +25,7 @@ export const ARTICLES: JournalArticle[] = [
     date: 'OCTOBER 2026',
     category: 'AVIONICS & AIRSPACE',
     readTime: '06 MIN',
-    title: 'The Shanwick Teletype: Oceanic Waypoint Clearances at Mach 0.90',
+    title: 'Oceanic Waypoint Clearances at Mach 0.90',
     summary: 'Traversing 54°N 020°W without ground-radar contact. How CPDLC satellite datalinks and high-altitude separation standards maintain 1,000-foot vertical intervals over the North Atlantic.',
     image: '/destinations/newyork-8k.jpg',
     pullQuote: 'At 45,000 feet, the ocean ceases to be geography and becomes pure mathematical separation.',
@@ -44,7 +44,7 @@ export const ARTICLES: JournalArticle[] = [
     readTime: '08 MIN',
     title: 'Atmospheric Equivalent: The Physiology of 3,850 Feet',
     summary: 'Why commercial 8,000-foot cabin pressures cause severe cognitive fatigue, and the structural engineering required to maintain 3,850 feet at FL470.',
-    image: '/destinations/first-class-suite.jpg',
+    image: '/first-class-suite.jpg',
     pullQuote: 'The human vascular system registers 8,000 feet as high-altitude hypoxia. At 3,800 feet, blood oxygen saturation remains near sea-level baseline.',
     bodyParagraphs: [
       'The primary cause of travel fatigue after a ten-hour flight is not time-zone displacement alone, but prolonged mild hypoxia. In a standard commercial airliner with an aluminum fuselage, differential pressure is limited to approximately 8.6 psi, dictating an 8,000-foot cabin altitude.',
@@ -78,7 +78,7 @@ export const ARTICLES: JournalArticle[] = [
     readTime: '07 MIN',
     title: 'Acoustic Decibel Suppression: Engineering the 48 dBA Threshold',
     summary: 'Acoustic attenuation in long-haul flight. How specialized vibration dampers, double-pane glass, and composite insulation eliminate cabin rumble.',
-    image: '/destinations/dreamliner-cabin.jpg',
+    image: '/dreamliner-cabin.jpg',
     pullQuote: 'True luxury in aviation is not gold fixtures. It is the absence of 85-decibel engine hum.',
     bodyParagraphs: [
       'Commercial airline cabins typically register between 78 and 86 dBA during cruise, which creates auditory fatigue over flights exceeding six hours. This noise is composed of boundary-layer airflow shear against the fuselage skin and low-frequency engine rotation.',
@@ -137,30 +137,30 @@ export const JournalPage: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#EEEBE4] py-20 relative">
-      {/* Floating Image Cursor Follower */}
+    <div ref={containerRef} className="min-h-screen bg-white py-20 relative">
+      {/* Floating Image Cursor Follower: Sharp Square Frame */}
       <div
         ref={floatImgRef}
-        className={`fixed top-0 left-0 w-72 h-44 pointer-events-none z-50 overflow-hidden photo-frame border-2 border-[var(--ink)] shadow-2xl transition-opacity duration-300 ${
+        className={`fixed top-0 left-0 w-72 h-44 pointer-events-none z-50 overflow-hidden rounded-none border-2 border-[#0A0A09] shadow-2xl transition-opacity duration-300 ${
           activeImg ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ display: activeImg ? 'block' : 'none' }}
       >
         {activeImg && (
-          <img src={activeImg} alt="Preview" className="w-full h-full object-cover" />
+          <img src={activeImg} alt="Preview" className="w-full h-full object-cover rounded-none" />
         )}
       </div>
 
-      <div className="grid-12">
-        <div className="col-span-12 mb-16 pb-8 hairline-b flex flex-col md:flex-row justify-between items-baseline gap-4">
+      <div className="max-w-[1400px] mx-auto px-6">
+        <div className="mb-12 pb-6 border-b border-[rgba(10,10,9,0.08)] flex flex-col md:flex-row justify-between items-baseline gap-4">
           <div>
-            <span className="micro-label text-[#E8431A]">Aviation Notes</span>
-            <h1 className="font-display text-5xl md:text-8xl mt-3 tracking-tight">
-              Field Notes
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Articles & Notes</span>
+            <h1 className="font-display text-4xl sm:text-6xl text-[#0A0A09] tracking-tight mt-1">
+              Flight Journal
             </h1>
           </div>
-          <p className="prose-editorial text-sm text-[var(--ink-80)]">
-            Aviation mechanics, flight physics, and airspace control essays written by dispatchers and flight engineers.
+          <p className="text-sm text-[#0A0A09]/70 max-w-md">
+            Stories on high-altitude aerodynamics, cabin acoustics, and long-range flight.
           </p>
         </div>
 
@@ -172,7 +172,7 @@ export const JournalPage: React.FC = () => {
               href={`/journal/${art.slug}`}
               onMouseEnter={() => setActiveImg(art.image)}
               onMouseLeave={() => setActiveImg(null)}
-              className="journal-row block py-10 px-4 hairline-b text-inherit no-underline hover:bg-[#F7F5F0] transition-colors group"
+              className="journal-row block py-10 px-4 hairline-b text-inherit no-underline hover:bg-[#F9FAFB] transition-colors group"
             >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
                 <div className="md:col-span-2 text-xs tabular text-[var(--ink-60)] group-hover:text-[var(--signal)] transition-colors">
@@ -180,7 +180,7 @@ export const JournalPage: React.FC = () => {
                 </div>
 
                 <div className="md:col-span-7">
-                  <h2 className="font-display text-2xl md:text-4xl group-hover:translate-x-2 transition-transform duration-300 leading-tight">
+                  <h2 className="font-display text-2xl md:text-3xl group-hover:translate-x-2 transition-transform duration-300 leading-snug">
                     {art.title}
                   </h2>
                   <p className="text-xs text-[var(--ink-80)] mt-2 line-clamp-2 max-w-2xl leading-relaxed">
