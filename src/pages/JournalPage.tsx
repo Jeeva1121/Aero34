@@ -154,7 +154,7 @@ export const JournalPage: React.FC = () => {
       <div className="grid-12">
         <div className="col-span-12 mb-16 pb-8 hairline-b flex flex-col md:flex-row justify-between items-baseline gap-4">
           <div>
-            <span className="micro-label">05 / OPERATIONAL ARCHIVES</span>
+            <span className="micro-label text-[#E8431A]">Aviation Notes</span>
             <h1 className="font-display text-5xl md:text-8xl mt-3 tracking-tight">
               Field Notes
             </h1>

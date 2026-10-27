@@ -58,8 +58,8 @@ export const Footer: React.FC = () => {
         {/* Line-Art Route Corridors SVG */}
         <div className="col-span-12 mb-16 overflow-hidden">
           <div className="flex justify-between items-center mb-4">
-            <span className="micro-label text-[#EEEBE4]/60">08 / GLOBAL NETWORK CARTOGRAPHY</span>
-            <span className="tabular text-xs text-[#EEEBE4]/40">12 ACTIVE LONG-HAUL CORRIDORS</span>
+            <span className="micro-label text-[#EEEBE4]/60">Flight Network Map</span>
+            <span className="tabular text-xs text-[#EEEBE4]/40">12 Direct Routes</span>
           </div>
           <svg
             ref={mapSvgRef}
@@ -88,19 +88,19 @@ export const Footer: React.FC = () => {
 
         {/* Monograph Directory Columns */}
         <div className="col-span-12 md:col-span-4 mb-12">
-          <p className="micro-label text-[#EEEBE4]/60 mb-4">OPERATIONAL DISPATCH</p>
+          <p className="micro-label text-[#EEEBE4]/60 mb-4">FLIGHT CONCIERGE</p>
           <p className="text-sm text-[#EEEBE4]/80 leading-relaxed max-w-sm mb-6">
             Private-seat allocation and charter dispatch for transcontinental city pairs. Direct ground handling at private FBOs.
           </p>
           <div className="space-y-1 text-xs tabular text-[#EEEBE4]/60">
-            <div>DISPATCH: +1 (212) 847-0134</div>
-            <div>OPS TELETYPE: DISPATCH@AERO34.COM</div>
+            <div>PHONE: +1 (212) 847-0134</div>
+            <div>EMAIL: CONCIERGE@AERO34.COM</div>
             <div>ICAO / EASA APPROVED PART 135</div>
           </div>
         </div>
 
         <div className="col-span-6 md:col-span-2 mb-12">
-          <p className="micro-label text-[#EEEBE4]/60 mb-4">CORRIDORS</p>
+          <p className="micro-label text-[#EEEBE4]/60 mb-4">ROUTES</p>
           <ul className="space-y-2 text-sm text-[#EEEBE4]/80 list-none">
             <li><Link href="/routes?region=Transatlantic" className="hover:text-[#E8431A] transition-colors">Transatlantic</Link></li>
             <li><Link href="/routes?region=Transpacific" className="hover:text-[#E8431A] transition-colors">Transpacific</Link></li>
@@ -115,7 +115,7 @@ export const Footer: React.FC = () => {
             <li><Link href="/cabin" className="hover:text-[#E8431A] transition-colors">Specifications</Link></li>
             <li><Link href="/request" className="hover:text-[#E8431A] transition-colors">Seat Request</Link></li>
             <li><Link href="/journal" className="hover:text-[#E8431A] transition-colors">Field Notes</Link></li>
-            <li><Link href="/admin" className="hover:text-[#E8431A] transition-colors">Admin Terminal</Link></li>
+            <li><Link href="/admin" className="hover:text-[#E8431A] transition-colors">Admin Portal</Link></li>
           </ul>
         </div>
 

@@ -179,14 +179,14 @@ export const RouteDetailPage: React.FC = () => {
           </div>
 
           <div>
-            <span className="micro-label text-white/80">{route.region} CORRIDOR DISPATCH</span>
+            <span className="micro-label text-white/80">{route.region} Flight</span>
             <h1 className="font-display text-5xl md:text-8xl mt-2 tracking-tight">
-              {route.originCity} <span className="text-white/40">/</span> {route.destCity}
+              {route.originCity} to {route.destCity}
             </h1>
             <div className="flex gap-6 text-sm tabular mt-4 text-white/90">
               <span>{route.originCode} → {route.destCode}</span>
               <span>•</span>
-              <span className="font-bold text-[#E8431A]">{route.blockTime} BLOCK</span>
+              <span className="font-bold text-[#E8431A]">{route.blockTime}</span>
               <span>•</span>
               <span>{route.distanceKm.toLocaleString()} KM</span>
             </div>
@@ -199,28 +199,28 @@ export const RouteDetailPage: React.FC = () => {
         {/* Sticky Left Column: Telemetry Facts */}
         <div className="col-span-12 lg:col-span-4 mb-12 lg:mb-0">
           <div ref={stickyColRef} className="p-8 hairline-all bg-[#F7F5F0]">
-            <span className="micro-label text-[10px]">ROUTE SPECIFICATIONS</span>
+            <span className="micro-label text-[10px]">Flight Specifications</span>
             <h2 className="font-display text-2xl mt-2 mb-6">{route.aircraft}</h2>
 
             <div className="space-y-4 text-xs tabular text-[var(--ink-80)]">
               <div className="flex justify-between py-2 hairline-b">
-                <span>FLIGHT TIME</span>
+                <span>Flight Time</span>
                 <span className="font-bold text-[var(--ink)]">{route.blockTime}</span>
               </div>
               <div className="flex justify-between py-2 hairline-b">
-                <span>CRUISE ALTITUDE</span>
+                <span>Cruising Altitude</span>
                 <span className="font-bold text-[var(--ink)]">FL{route.altitudeFeet / 1000}0 ({(route.altitudeFeet).toLocaleString()} FT)</span>
               </div>
               <div className="flex justify-between py-2 hairline-b">
-                <span>GREAT CIRCLE DISTANCE</span>
+                <span>Route Distance</span>
                 <span className="font-bold text-[var(--ink)]">{route.distanceKm.toLocaleString()} KM</span>
               </div>
               <div className="flex justify-between py-2 hairline-b">
-                <span>TOTAL CERTIFIED SEATS</span>
+                <span>Certified Seats</span>
                 <span className="font-bold text-[var(--ink)]">{route.totalSeats} SEATS</span>
               </div>
               <div className="flex justify-between py-2 hairline-b">
-                <span>CABIN CONFIGURATION</span>
+                <span>Cabin Layout</span>
                 <span className="font-bold text-[var(--ink)] text-right max-w-[180px]">{route.cabinLayout}</span>
               </div>
             </div>
@@ -245,7 +245,7 @@ export const RouteDetailPage: React.FC = () => {
           <div className="hairline-all p-8 bg-[#F7F5F0]">
             <div className="flex justify-between items-baseline mb-6">
               <div>
-                <span className="micro-label">01 / DISPATCH AVAILABILITY</span>
+                <span className="micro-label">Flight Availability</span>
                 <h3 className="font-display text-3xl mt-1">Calendar & Seat Inventory</h3>
               </div>
               <span className="text-xs tabular text-[var(--ink-60)]">NEXT 60 DAYS</span>
@@ -305,8 +305,8 @@ export const RouteDetailPage: React.FC = () => {
           <div className="hairline-all p-8 bg-[#F7F5F0]">
             <div className="flex justify-between items-baseline mb-6">
               <div>
-                <span className="micro-label">02 / INTERIOR SCHEMATIC</span>
-                <h3 className="font-display text-3xl mt-1">Airframe Seat Architecture</h3>
+                <span className="micro-label">Cabin Layout</span>
+                <h3 className="font-display text-3xl mt-1">Aircraft Seating Plan</h3>
               </div>
               <span className="text-xs tabular text-[var(--ink-60)]">SCALE 1:50</span>
             </div>
@@ -417,15 +417,15 @@ export const RouteDetailPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 5. Pinned Canvas Airframe Turn Section */}
+      {/* 5. Airframe View Section */}
       <section id="airframe-turn-section" className="min-h-screen hairline-t bg-[#0A0A09] text-[#EEEBE4] flex flex-col justify-between p-12 relative overflow-hidden">
         <div className="flex justify-between items-baseline z-10">
           <div>
-            <span className="micro-label text-white/60">03 / DYNAMIC AIRFRAME SCRUB</span>
-            <h2 className="font-display text-4xl mt-2 text-white">360° Vector Telemetry</h2>
+            <span className="micro-label text-white/60">Airframe Perspective</span>
+            <h2 className="font-display text-4xl mt-2 text-white">360° Aircraft View</h2>
           </div>
           <div ref={telemetryRef} className="tabular text-xs text-[#E8431A] font-bold">
-            HDG 000° • CRUISE FL450 • MACH 0.88
+            CRUISE FL450 • MACH 0.88
           </div>
         </div>
 
@@ -439,8 +439,8 @@ export const RouteDetailPage: React.FC = () => {
         </div>
 
         <div className="flex justify-between items-center text-xs tabular text-white/50 z-10 pt-4 border-t border-white/10">
-          <span>AIRCRAFT: {route.aircraft}</span>
-          <span>PINNED SCRUB 250% • ROTATION TIED TO SCROLL</span>
+          <span>Aircraft: {route.aircraft}</span>
+          <span>Scroll to rotate airframe</span>
           <Link href={`/request?route=${route.id}`} className="btn-editorial bg-white text-[#0A0A09] hover:bg-[#E8431A] hover:text-white border-none py-2 px-5">
             <span>Reserve Route</span>
           </Link>

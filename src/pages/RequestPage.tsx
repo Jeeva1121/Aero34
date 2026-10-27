@@ -243,12 +243,12 @@ export const RequestPage: React.FC = () => {
     <div ref={containerRef} className="min-h-screen bg-[#EEEBE4] py-16">
       <div className="grid-12">
         <div className="col-span-12 mb-10">
-          <span className="micro-label">04 / DISPATCH ALLOCATION</span>
+          <span className="micro-label text-[#E8431A] block mb-2">Private Seat Allocation</span>
           <h1 className="font-display text-4xl md:text-6xl mt-2 tracking-tight">
-            Seat & Charter Request
+            Request a Flight Seat
           </h1>
           <p className="prose-editorial text-sm mt-3">
-            Submit a direct allocation request on certified corridors. Requests are processed atomically against live airframe seat capacity.
+            Select your route, dates, and party size. Seat availability is updated in real time.
           </p>
         </div>
 
@@ -264,12 +264,12 @@ export const RequestPage: React.FC = () => {
           </div>
 
           <div className="flex justify-between items-center text-xs tabular text-[var(--ink-60)] mb-8 pb-4 hairline-b">
-            <span>STEP 0{currentStep} / 04</span>
+            <span>Step {currentStep} of 4</span>
             <span className="uppercase font-semibold text-[var(--ink)]">
-              {currentStep === 1 && 'Corridor Selection'}
-              {currentStep === 2 && 'Dates & Party Manifest'}
-              {currentStep === 3 && 'Passenger Dispatch Details'}
-              {currentStep === 4 && 'Manifest Review & Teletype'}
+              {currentStep === 1 && 'Route Selection'}
+              {currentStep === 2 && 'Dates & Passengers'}
+              {currentStep === 3 && 'Contact Details'}
+              {currentStep === 4 && 'Review & Confirm'}
             </span>
           </div>
 
@@ -492,7 +492,7 @@ export const RequestPage: React.FC = () => {
               <div className="flex justify-between items-start pb-6 border-b-2 border-dashed border-[var(--ink-25)]">
                 <div>
                   <span className="micro-label text-[var(--signal)]">SEAT REQUEST LOGGED</span>
-                  <h2 className="font-display text-4xl mt-1">Flight Dispatch Manifest</h2>
+                  <h2 className="font-display text-4xl mt-1">Seat Reservation Summary</h2>
                 </div>
                 <div className="text-right">
                   <span className="micro-label text-[10px]">REFERENCE NO.</span>
@@ -504,26 +504,26 @@ export const RequestPage: React.FC = () => {
 
               <div className="py-6 space-y-3 text-xs tabular border-b-2 border-dashed border-[var(--ink-25)]">
                 <div className="flex justify-between">
-                  <span className="text-[var(--ink-60)]">CORRIDOR:</span>
+                  <span className="text-[var(--ink-60)]">ROUTE:</span>
                   <span className="font-bold">{selectedRouteObj?.originCity} ({selectedRouteObj?.originCode}) → {selectedRouteObj?.destCity} ({selectedRouteObj?.destCode})</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[var(--ink-60)]">SCHEDULED DEPARTURE:</span>
+                  <span className="text-[var(--ink-60)]">DEPARTURE DATE:</span>
                   <span className="font-bold">{dates}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[var(--ink-60)]">ALLOCATED PARTY:</span>
+                  <span className="text-[var(--ink-60)]">PASSENGERS:</span>
                   <span className="font-bold">{partySize} PASSENGERS</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[var(--ink-60)]">DISPATCH STATUS:</span>
-                  <span className="font-bold text-[var(--signal)]">RECEIVED • PENDING FINAL CREW ASSIGNMENT</span>
+                  <span className="text-[var(--ink-60)]">STATUS:</span>
+                  <span className="font-bold text-[var(--signal)]">RECEIVED • UNDER REVIEW</span>
                 </div>
               </div>
 
               <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
                 <p className="text-[var(--ink-60)] text-[11px]">
-                  Confirmation teletype transmitted to {email}. You can monitor this request live below.
+                  Confirmation sent to {email}. You can monitor this request live below.
                 </p>
                 <button
                   onClick={() => {
@@ -541,21 +541,21 @@ export const RequestPage: React.FC = () => {
 
         {/* Sidebar Dispatch Protocol */}
         <div className="col-span-12 lg:col-span-4 mt-8 lg:mt-0 p-8 hairline-all bg-[#F7F5F0]">
-          <span className="micro-label text-[10px]">CHARTER DISPATCH PROTOCOL</span>
-          <h3 className="font-display text-2xl mt-2 mb-4">Atomic Seat Reservation</h3>
+          <span className="micro-label text-[10px]">RESERVATION PROTOCOL</span>
+          <h3 className="font-display text-2xl mt-2 mb-4">Guaranteed Seat Holding</h3>
           <p className="text-xs text-[var(--ink-80)] leading-relaxed mb-6">
-            Unlike commercial ticketing systems, seat allotments on Aero 34 airframes decrement atomically inside transactional database records. Two requests can never capture the same seat simultaneously.
+            Unlike commercial overbooking systems, seat allotments on Aero 34 airframes decrement directly in verified database records. Two requests can never capture the same seat simultaneously.
           </p>
 
           <div className="space-y-3 text-xs tabular text-[var(--ink-80)] pb-6 hairline-b">
-            <div>• ZERO DOUBLE-BOOKINGS GUARANTEED</div>
-            <div>• IDEMPOTENT SUBMISSIONS PROTECTED</div>
-            <div>• PRIVATE FBO TERMINAL CLEARANCE</div>
-            <div>• REAL-TIME SSE STATUS BROADCAST</div>
+            <div>• ZERO OVERBOOKINGS GUARANTEED</div>
+            <div>• IMMEDIATE CONFIRMATION REFERENCE</div>
+            <div>• PRIVATE TERMINAL BOARDING</div>
+            <div>• LIVE STATUS UPDATES</div>
           </div>
 
           <div className="mt-6 text-[11px] text-[var(--ink-60)]">
-            Aero 34 Operations Teletype: DISPATCH@AERO34.COM
+            Aero 34 Flight Concierge: concierge@aero34.com
           </div>
         </div>
 
@@ -563,7 +563,7 @@ export const RequestPage: React.FC = () => {
         <div className="col-span-12 mt-16 p-8 md:p-12 hairline-all bg-[#0A0A09] text-[#EEEBE4]">
           <div className="flex flex-col md:flex-row justify-between items-baseline mb-8">
             <div>
-              <span className="micro-label text-[#E8431A]">LIVE SSE TELETYPE TRACKER</span>
+              <span className="micro-label text-[#E8431A]">LIVE STATUS</span>
               <h2 className="font-display text-3xl md:text-4xl mt-2 text-white">
                 Request Status Inquiry
               </h2>
@@ -571,7 +571,7 @@ export const RequestPage: React.FC = () => {
             {isLiveConnected && (
               <span className="text-xs text-[#E8431A] tabular font-bold flex items-center gap-2 mt-2 md:mt-0">
                 <span className="w-2 h-2 rounded-full bg-[#E8431A] animate-pulse" />
-                LIVE SSE CONNECTION ACTIVE
+                LIVE UPDATES ACTIVE
               </span>
             )}
           </div>

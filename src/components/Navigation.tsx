@@ -31,35 +31,33 @@ export const Navigation: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { href: '/', label: 'Monograph' },
-    { href: '/routes', label: 'Corridors' },
-    { href: '/cabin', label: 'Specifications' },
-    { href: '/request', label: 'Seat Request' },
-    { href: '/journal', label: 'Field Notes' },
+    { href: '/', label: 'Home' },
+    { href: '/routes', label: 'Routes' },
+    { href: '/cabin', label: 'Cabin' },
+    { href: '/request', label: 'Request' },
+    { href: '/journal', label: 'Notes' },
   ];
 
   return (
-    <header className="hairline-b sticky top-0 z-50 bg-[#EEEBE4]/95 backdrop-blur-none transition-colors duration-300">
-      <div className="grid-12 items-center py-4">
-        {/* Left: Brand Mark */}
-        <div className="col-span-3 flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-3 text-inherit no-underline" aria-label="AERO 34 Platform Home">
-            <img src="/logo.png" alt="AERO 34 Emblem" className="h-8 w-auto object-contain" />
+    <header className="site-header">
+      <div className="grid-12">
+        {/* Left: Clean Brand Logo only - no robotic labels */}
+        <div className="flex items-center">
+          <Link href="/" className="inline-block" aria-label="Aero 34 Home">
+            <img src="/logo.png" alt="AERO 34" className="h-8 max-h-8 w-auto object-contain" />
           </Link>
-          <span className="hidden lg:inline-block h-3 w-[1px] bg-[var(--ink-12)]" />
-          <span className="hidden lg:inline-block micro-label text-[10px]">CORRIDOR 34 • FL470</span>
         </div>
 
-        {/* Center: Monograph Navigation Links */}
-        <nav className="col-span-6 hidden md:flex items-center justify-center gap-8" aria-label="Primary Navigation">
+        {/* Center: Clean Human Navigation Links */}
+        <nav aria-label="Primary Navigation">
           {navLinks.map((link) => {
             const isActive = location === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`editorial-link text-[13px] font-medium tracking-wide uppercase ${
-                  isActive ? 'text-[var(--signal)] font-semibold' : 'text-[var(--ink-80)]'
+                className={`text-sm font-medium tracking-wide transition-colors ${
+                  isActive ? 'text-[#E8431A] font-semibold' : 'text-[#0A0A09]/80 hover:text-[#0A0A09]'
                 }`}
               >
                 {link.label}
@@ -68,34 +66,27 @@ export const Navigation: React.FC = () => {
           })}
         </nav>
 
-        {/* Right: Shortlist Counter & Admin Access */}
-        <div className="col-span-9 md:col-span-3 flex items-center justify-end gap-5">
+        {/* Right: Shortlist & Request Button */}
+        <div className="flex items-center gap-4">
           <Link
             href="/routes?filter=shortlist"
-            className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-[var(--ink)] no-underline hover:text-[var(--signal)] transition-colors"
-            title="View saved route shortlist"
+            className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#0A0A09] hover:text-[#E8431A] transition-colors"
+            title="View saved routes"
           >
             <span>Shortlist</span>
             <span
               ref={counterRef}
-              className="tabular inline-flex items-center justify-center px-1.5 py-0.5 text-[11px] font-bold border border-[var(--ink-25)]"
+              className="tabular px-1.5 py-0.5 text-[11px] font-bold border border-[#0A0A09]/20"
             >
               {String(shortlistCount).padStart(2, '0')}
             </span>
           </Link>
 
           <Link
-            href="/admin"
-            className="micro-label hidden sm:inline-block hover:text-[var(--signal)] transition-colors"
-          >
-            Terminal
-          </Link>
-
-          <Link
             href="/request"
-            className="btn-editorial py-2 px-4 text-[11px]"
+            className="btn-editorial btn-signal py-2 px-4 text-xs font-semibold"
           >
-            <span>Request</span>
+            <span>Request Seat</span>
           </Link>
         </div>
       </div>

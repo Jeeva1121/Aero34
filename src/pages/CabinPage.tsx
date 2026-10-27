@@ -147,18 +147,18 @@ export const CabinPage: React.FC = () => {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-[#EEEBE4]">
-      {/* Header Monograph Section */}
+      {/* Header Section */}
       <section className="pt-20 pb-16 hairline-b">
         <div className="grid-12">
           <div className="col-span-12 md:col-span-8">
-            <span className="micro-label">03 / INTERIOR ARCHITECTURE SPECIFICATIONS</span>
+            <span className="micro-label text-[#E8431A]">Cabin Specifications</span>
             <h1 className="font-display text-5xl md:text-8xl mt-3 tracking-tight">
-              Acoustic Isolation & Atmospheric Integrity.
+              Quiet Space. Pure Fresh Air.
             </h1>
           </div>
           <div className="col-span-12 md:col-span-4 flex flex-col justify-end mt-6 md:mt-0">
             <p className="prose-editorial text-sm">
-              Certified for continuous long-haul flight across all oceanic airspaces. Every dimension adheres strictly to Gulfstream and Bombardier executive layout standards.
+              Certified for continuous long-haul flight across all oceanic airspaces. Every layout adheres to Gulfstream and Bombardier executive standards.
             </p>
           </div>
         </div>
@@ -167,16 +167,15 @@ export const CabinPage: React.FC = () => {
       {/* Marquee with Velocity Skew */}
       <div className="py-6 hairline-b bg-[#0A0A09] text-[#EEEBE4] overflow-hidden whitespace-nowrap">
         <div ref={marqueeTrackRef} className="flex gap-12 text-sm uppercase tracking-widest tabular font-semibold">
-          <span>• 48 dBA WHISPER CABIN</span>
-          <span>• 3,850 FT EQUIVALENT ALTITUDE</span>
-          <span>• HEPA AIR REPLACEMENT 120s</span>
-          <span>• 82&quot; LIE-FLAT MASTER BERTHS</span>
-          <span>• KA-BAND 120 MBPS SATELLITE DATALINK</span>
-          <span>• INDUCTION CATERING GALLEY</span>
-          <span>• 48 dBA WHISPER CABIN</span>
-          <span>• 3,850 FT EQUIVALENT ALTITUDE</span>
-          <span>• HEPA AIR REPLACEMENT 120s</span>
-          <span>• 82&quot; LIE-FLAT MASTER BERTHS</span>
+          <span>• 48 dBA Quiet Cabin</span>
+          <span>• 3,850 FT Cabin Altitude</span>
+          <span>• Fresh Air Every 120s</span>
+          <span>• 82&quot; Lie-Flat Suites</span>
+          <span>• High-Speed Satellite Datalink</span>
+          <span>• 48 dBA Quiet Cabin</span>
+          <span>• 3,850 FT Cabin Altitude</span>
+          <span>• Fresh Air Every 120s</span>
+          <span>• 82&quot; Lie-Flat Suites</span>
         </div>
       </div>
 
@@ -184,14 +183,14 @@ export const CabinPage: React.FC = () => {
       <section ref={stackWrapperRef} className="py-24">
         <div className="grid-12">
           <div className="col-span-12 space-y-16">
-            {cabinSpecs.map((spec, i) => (
+            {cabinSpecs.map((spec) => (
               <div
                 key={spec.label}
                 className="stack-card clip-reveal-item p-8 md:p-14 hairline-all bg-[#F7F5F0] rounded-none"
               >
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                   <div className="md:col-span-6">
-                    <span className="micro-label text-[10px]">ZONE 0{i + 1} / {spec.label}</span>
+                    <span className="micro-label text-[10px] text-[#E8431A]">{spec.label}</span>
                     <h2 className="font-display text-3xl md:text-5xl mt-3 mb-6 leading-tight">
                       {spec.headline}
                     </h2>
@@ -228,7 +227,7 @@ export const CabinPage: React.FC = () => {
         <img
           ref={cloud1Ref}
           src="/cloud-4k-fluffy.png"
-          alt="Atmospheric cumulus layer"
+          alt="Atmospheric clouds"
           className="absolute top-10 left-[-15%] w-[650px] opacity-40 pointer-events-none z-10"
         />
         <img
@@ -246,7 +245,7 @@ export const CabinPage: React.FC = () => {
 
         {/* Revealed Headline in Center */}
         <div className="relative z-0 text-center max-w-3xl">
-          <span className="micro-label text-[#E8431A]">FL470 TROPOPAUSE CLEARANCE</span>
+          <span className="micro-label text-[#E8431A]">High Altitude Clearance</span>
           <h2 className="font-display text-4xl md:text-7xl mt-4 leading-tight">
             Above Atmospheric Turbulence.
           </h2>

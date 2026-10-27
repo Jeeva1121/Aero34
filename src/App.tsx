@@ -19,8 +19,6 @@ import { PrivacyPage, TermsPage, NotFoundPage } from './pages/LegalPages.js';
 
 export default function App() {
   const [location] = useLocation();
-  const curtainRef = useRef<HTMLDivElement>(null);
-  const routeCodeRef = useRef<HTMLSpanElement>(null);
 
   // Initialize smooth inertia scroll and global scroll progress bar
   useEffect(() => {
@@ -32,39 +30,14 @@ export default function App() {
     };
   }, []);
 
-  // Page Transitions: Curtain wipe with clip-path and route code counting in the corner (0.8s total)
+  // Smooth scroll to top and refresh ScrollTrigger on navigation
   useEffect(() => {
     window.scrollTo(0, 0);
     lenis?.scrollTo(0, { immediate: true });
-
-    const curtain = curtainRef.current;
-    const routeCode = routeCodeRef.current;
-
-    if (curtain && routeCode) {
-      const codes = ['AR-7K2Q9', 'AR-9X4M1', 'FL470', 'SHANWICK', 'NAT-OTS', 'AR-3B8L5'];
-      const randomCode = codes[Math.floor(Math.random() * codes.length)];
-      routeCode.innerText = randomCode;
-
-      const tl = gsap.timeline({
-        onComplete: () => {
-          ScrollTrigger.refresh();
-        },
-      });
-
-      tl.fromTo(
-        curtain,
-        { clipPath: 'inset(0% 0 100% 0)' },
-        { clipPath: 'inset(0% 0 0% 0)', duration: 0.38, ease: 'power4.inOut' }
-      )
-        .to(curtain, {
-          clipPath: 'inset(100% 0 0% 0)',
-          duration: 0.42,
-          ease: 'power4.inOut',
-          delay: 0.05,
-        });
-    } else {
+    const timer = setTimeout(() => {
       ScrollTrigger.refresh();
-    }
+    }, 50);
+    return () => clearTimeout(timer);
   }, [location]);
 
   return (
@@ -75,26 +48,7 @@ export default function App() {
       {/* Global Top Scroll Progress Bar */}
       <div id="global-scroll-bar" />
 
-      {/* Global Page Transition Curtain Wipe */}
-      <div
-        ref={curtainRef}
-        className="fixed inset-0 z-[99999] pointer-events-none bg-[#0A0A09] text-[#EEEBE4] flex flex-col justify-between p-8"
-        style={{ clipPath: 'inset(0 0 100% 0)' }}
-      >
-        <div className="flex justify-between items-center text-xs tracking-widest text-white/50">
-          <span>AERO 34 CORRIDOR DISPATCH</span>
-          <span ref={routeCodeRef} className="tabular font-bold text-[#E8431A]">AR-7K2Q9</span>
-        </div>
-        <div className="text-center font-display text-4xl text-white tracking-tighter">
-          AERO 34
-        </div>
-        <div className="flex justify-between items-center text-xs tabular text-white/40">
-          <span>ICAO FLIGHT PLAN INITIATED</span>
-          <span>FL470 CLEARANCE</span>
-        </div>
-      </div>
-
-      {/* Monograph Navigation */}
+      {/* Primary Navigation */}
       <Navigation />
 
       {/* Dynamic Page Router */}
@@ -102,11 +56,15 @@ export default function App() {
         <Switch>
           <Route path="/" component={HomePage} />
           <Route path="/routes" component={RoutesPage} />
+          <Route path="/corridors" component={RoutesPage} />
           <Route path="/routes/:slug" component={RouteDetailPage} />
           <Route path="/cabin" component={CabinPage} />
+          <Route path="/specifications" component={CabinPage} />
           <Route path="/request" component={RequestPage} />
           <Route path="/journal" component={JournalPage} />
+          <Route path="/notes" component={JournalPage} />
           <Route path="/journal/:slug" component={ArticlePage} />
+          <Route path="/notes/:slug" component={ArticlePage} />
           <Route path="/admin" component={AdminPage} />
           <Route path="/privacy" component={PrivacyPage} />
           <Route path="/terms" component={TermsPage} />
