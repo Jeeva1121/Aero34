@@ -30,7 +30,7 @@ export default function App() {
     };
   }, []);
 
-  // Smooth scroll to top and refresh ScrollTrigger on navigation
+  // Page Navigation: Reset scroll and refresh ScrollTrigger smoothly
   useEffect(() => {
     window.scrollTo(0, 0);
     lenis?.scrollTo(0, { immediate: true });
@@ -38,14 +38,14 @@ export default function App() {
   }, [location]);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-white text-[#0A0A09] selection:bg-[#E8431A] selection:text-white">
+    <div className="min-h-screen flex flex-col justify-between bg-[#EEEBE4] text-[#0A0A09] selection:bg-[#E8431A] selection:text-[#EEEBE4]">
       {/* Precision Custom Cursor */}
       <Cursor />
 
       {/* Global Top Scroll Progress Bar */}
       <div id="global-scroll-bar" />
 
-      {/* Modern Navigation Header */}
+      {/* Monograph Navigation */}
       <Navigation />
 
       {/* Dynamic Page Router */}

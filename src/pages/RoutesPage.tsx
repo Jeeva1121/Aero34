@@ -94,22 +94,22 @@ export const RoutesPage: React.FC = () => {
   const filterTabs = ['All', 'Transatlantic', 'Transpacific', 'Eurasia', 'Alpine-Gulf', 'Shortlist'];
 
   return (
-    <div className="min-h-screen bg-white py-12">
+    <div className="min-h-screen bg-[#EEEBE4] py-12">
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Clean Modern Header */}
         <div className="mb-10 pb-6 border-b border-[rgba(10,10,9,0.08)]">
           <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">
-            Worldwide Corridors
+            Direct Flight Routes
           </span>
           <h1 className="font-display text-4xl sm:text-6xl text-[#0A0A09] tracking-tight mt-1 mb-3">
-            Flight Schedules
+            Direct Global Routes
           </h1>
           <p className="text-sm sm:text-base text-[#0A0A09]/75 max-w-2xl leading-relaxed">
-            Browse our twelve direct long-haul routes. Select a corridor to view certified airframe layouts, flight times, and monthly seat availability.
+            Browse twelve direct nonstop routes connecting major financial centers with verified flight times and private VIP terminal access.
           </p>
 
-          {/* Filter Bar with Sleek Square Tabs */}
-          <div className="flex flex-wrap items-center gap-2 mt-8">
+          {/* Filter Bar with Sleek Luxury Pills */}
+          <div className="flex flex-wrap items-center gap-3 mt-8">
             {filterTabs.map((tab) => {
               const isSelected = selectedFilter === tab;
               const countBadge = tab === 'Shortlist' ? ` (${shortlist.length})` : '';
@@ -117,10 +117,10 @@ export const RoutesPage: React.FC = () => {
                 <button
                   key={tab}
                   onClick={() => handleFilterChange(tab)}
-                  className={`px-4 py-2 text-xs font-semibold tracking-wider uppercase rounded-none transition-all duration-150 cursor-pointer ${
+                  className={`inline-flex items-center justify-center px-5 py-2.5 text-xs font-semibold tracking-wider uppercase rounded-full transition-all duration-200 cursor-pointer ${
                     isSelected
-                      ? 'bg-[#0A0A09] text-white shadow-sm'
-                      : 'bg-white text-[#0A0A09]/75 hover:bg-[#0A0A09]/5 hover:text-[#0A0A09] border border-[rgba(10,10,9,0.12)]'
+                      ? 'bg-[#0A0A09] text-white shadow-md'
+                      : 'bg-white text-[#0A0A09]/80 hover:bg-[#0A0A09] hover:text-white border border-black/10 shadow-xs'
                   }`}
                 >
                   {tab === 'Shortlist' ? 'Saved' : tab}
@@ -135,14 +135,14 @@ export const RoutesPage: React.FC = () => {
         {loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-12">
             {[1, 2, 3, 4, 5, 6].map((n) => (
-              <div key={n} className="h-96 rounded-none skeleton-bone" />
+              <div key={n} className="h-96 rounded-2xl skeleton-bone" />
             ))}
           </div>
         )}
 
         {/* Empty State */}
         {!loading && filteredRoutes.length === 0 && (
-          <div className="py-24 text-center bg-white rounded-none border border-[rgba(10,10,9,0.12)] p-12">
+          <div className="py-24 text-center bg-white rounded-3xl border border-[rgba(10,10,9,0.08)] p-12">
             <h3 className="font-display text-3xl text-[#0A0A09] mb-2">No Routes in this Filter</h3>
             <p className="text-sm text-[#0A0A09]/60 max-w-md mx-auto mb-6">
               {selectedFilter === 'Shortlist'
@@ -151,14 +151,14 @@ export const RoutesPage: React.FC = () => {
             </p>
             <button
               onClick={() => handleFilterChange('All')}
-              className="px-5 py-2.5 rounded-none bg-[#0A0A09] text-white text-xs font-semibold tracking-wider uppercase hover:bg-[#E8431A] transition-colors"
+              className="px-5 py-2.5 rounded-full bg-[#0A0A09] text-white text-xs font-semibold tracking-wider uppercase hover:bg-[#E8431A] transition-colors"
             >
               Show All Routes
             </button>
           </div>
         )}
 
-        {/* Route Cards Grid: Clean, Modern, Crisp Square Cards! */}
+        {/* Route Cards Grid: Clean, Modern, ZERO Text Overlap! */}
         {!loading && filteredRoutes.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredRoutes.map((route) => {
@@ -166,26 +166,29 @@ export const RoutesPage: React.FC = () => {
               return (
                 <div
                   key={route.id}
-                  className="group bg-white rounded-none overflow-hidden border border-[rgba(10,10,9,0.12)] shadow-sm hover:shadow-xl transition-all duration-200 flex flex-col justify-between"
+                  className="group bg-white rounded-2xl overflow-hidden border border-[rgba(10,10,9,0.08)] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
                 >
                   {/* Top Image Stage */}
-                  <div className="relative h-56 overflow-hidden bg-[#0A0A09]/5 rounded-none">
+                  <div className="relative h-56 overflow-hidden bg-[#0A0A09]/5">
                     <img
                       src={route.heroImage}
                       alt={`${route.originCity} to ${route.destCity}`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/destinations/tokyo-8k.jpg';
+                      }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
 
                     {/* Region Badge & Save Button */}
                     <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
-                      <span className="px-3 py-1 text-[11px] font-semibold tracking-wide uppercase bg-black/60 backdrop-blur-md text-white rounded-none border border-white/20">
+                      <span className="px-3 py-1 text-[11px] font-semibold tracking-wide uppercase bg-black/50 backdrop-blur-md text-white rounded-full">
                         {route.region}
                       </span>
                       <button
                         onClick={(e) => handleShortlistToggle(route.id, e)}
-                        className={`p-2 rounded-none transition-all duration-200 cursor-pointer backdrop-blur-md border border-white/20 ${
+                        className={`p-2 rounded-full transition-all duration-200 cursor-pointer backdrop-blur-md ${
                           isSaved
                             ? 'bg-[#E8431A] text-white'
                             : 'bg-black/40 text-white hover:bg-white hover:text-[#0A0A09]'
@@ -201,10 +204,10 @@ export const RoutesPage: React.FC = () => {
 
                     {/* Flight Duration Badge on Image */}
                     <div className="absolute bottom-3 left-4 right-4 flex justify-between items-center text-white text-xs z-10">
-                      <span className="font-mono font-bold bg-[#E8431A] px-2 py-0.5 rounded-none text-[11px]">
+                      <span className="font-mono font-bold bg-[#E8431A] px-2 py-0.5 rounded text-[11px]">
                         {route.blockTime} DIRECT
                       </span>
-                      <span className="text-white/90 text-[11px] font-mono">
+                      <span className="text-white/90 text-[11px]">
                         {route.distanceKm.toLocaleString()} KM
                       </span>
                     </div>
@@ -215,25 +218,21 @@ export const RoutesPage: React.FC = () => {
                     <div>
                       {/* Clear City Pair: Never Collides! */}
                       <div className="flex items-center justify-between gap-2 mb-2">
-                        <div className="min-w-0 flex-1">
+                        <div>
                           <div className="text-xs font-mono font-bold text-[#E8431A]">{route.originCode}</div>
-                          <h3 className="font-display text-xl sm:text-2xl text-[#0A0A09] leading-tight truncate" title={route.originCity}>
-                            {route.originCity}
-                          </h3>
+                          <h3 className="font-display text-2xl text-[#0A0A09] leading-tight">{route.originCity}</h3>
                         </div>
 
-                        <div className="flex flex-col items-center px-1 shrink-0">
-                          <span className="text-[10px] uppercase font-semibold text-[#0A0A09]/40 mb-0.5">direct</span>
-                          <svg viewBox="0 0 40 10" className="w-10 h-2.5 text-[#0A0A09]/30 fill-none stroke-current" strokeWidth="1.5">
-                            <path d="M 0 5 L 34 5 M 29 1 L 34 5 L 29 9" />
+                        <div className="flex flex-col items-center px-2">
+                          <span className="text-xs text-[#0A0A09]/40 mb-0.5">non-stop</span>
+                          <svg viewBox="0 0 60 12" className="w-14 h-3 text-[#0A0A09]/30 fill-none stroke-current" strokeWidth="1.5">
+                            <path d="M 0 6 L 52 6 M 46 1 L 52 6 L 46 11" />
                           </svg>
                         </div>
 
-                        <div className="text-right min-w-0 flex-1">
+                        <div className="text-right">
                           <div className="text-xs font-mono font-bold text-[#E8431A]">{route.destCode}</div>
-                          <h3 className="font-display text-xl sm:text-2xl text-[#0A0A09] leading-tight truncate" title={route.destCity}>
-                            {route.destCity}
-                          </h3>
+                          <h3 className="font-display text-2xl text-[#0A0A09] leading-tight">{route.destCity}</h3>
                         </div>
                       </div>
 
@@ -241,7 +240,7 @@ export const RoutesPage: React.FC = () => {
                         {route.overview}
                       </p>
 
-                      <div className="bg-[#F9FAFB] rounded-none p-3 border border-[rgba(10,10,9,0.08)] flex justify-between items-center text-xs text-[#0A0A09]/80 mb-6">
+                      <div className="bg-[#F7F5F0] rounded-xl p-3 flex justify-between items-center text-xs text-[#0A0A09]/80 mb-6">
                         <div>
                           <span className="text-[10px] uppercase font-semibold text-[#0A0A09]/50 block">Airframe</span>
                           <span className="font-medium text-[11px]">{route.aircraft}</span>
@@ -253,19 +252,19 @@ export const RoutesPage: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Bottom Action Buttons: Crisp Square */}
+                    {/* Bottom Action Buttons */}
                     <div className="flex items-center gap-3 pt-4 border-t border-[rgba(10,10,9,0.08)]">
                       <Link
                         href={`/routes/${route.slug}`}
-                        className="flex-1 py-2.5 px-4 text-center text-xs font-semibold rounded-none border border-[#0A0A09] text-[#0A0A09] hover:bg-[#0A0A09] hover:text-white transition-all duration-150 no-underline"
+                        className="flex-1 py-2.5 px-4 text-center text-xs font-semibold rounded-full border border-[#0A0A09] text-[#0A0A09] hover:bg-[#0A0A09] hover:text-white transition-all duration-200 no-underline"
                       >
-                        Specifications
+                        Route Details
                       </Link>
                       <Link
                         href={`/request?route=${route.id}`}
-                        className="flex-1 py-2.5 px-4 text-center text-xs font-semibold rounded-none bg-[#E8431A] text-white hover:bg-[#0A0A09] transition-all duration-150 no-underline shadow-sm"
+                        className="flex-1 py-2.5 px-4 text-center text-xs font-semibold rounded-full bg-[#E8431A] text-white hover:bg-[#0A0A09] transition-all duration-200 no-underline shadow-sm"
                       >
-                        Request Seat
+                        Book Seat
                       </Link>
                     </div>
                   </div>

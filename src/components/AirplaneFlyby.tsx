@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export const AirplaneFlyby: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const airplaneRef = useRef<HTMLDivElement>(null);
@@ -118,24 +120,23 @@ export const AirplaneFlyby: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      id="flyby-section"
-      className="relative min-h-[95vh] w-full overflow-hidden bg-gradient-to-b from-[#87A8C8] via-[#B5CBE0] to-white py-24 flex flex-col justify-between"
+      className="relative w-full overflow-hidden bg-linear-to-b from-[#87A8C8] via-[#BFD5E8] to-[#EEEBE4] pt-32 pb-48"
     >
       {/* Title & Headline */}
-      <div className="relative z-20 max-w-[1400px] mx-auto px-6 text-center pt-8">
-        <span className="inline-block px-3 py-1 text-[11px] font-bold uppercase tracking-wider bg-white/60 backdrop-blur-sm rounded-none border border-black/10 text-[#0A0A09] mb-4">
+      <div className="relative z-20 max-w-[1400px] mx-auto px-6 text-center">
+        <span className="inline-block px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider bg-white/60 backdrop-blur-md rounded-full text-[#0A0A09] mb-4 border border-white/50 shadow-xs">
           Direct High-Altitude Flight
         </span>
         <h2 className="font-display text-4xl sm:text-6xl md:text-7xl text-[#0A0A09] tracking-tight leading-none mb-4">
           Above the Clouds.
         </h2>
-        <p className="text-sm md:text-base text-[#0A0A09]/80 max-w-xl mx-auto leading-relaxed">
+        <p className="text-sm md:text-base text-[#0A0A09]/80 max-w-xl mx-auto leading-relaxed font-light">
           Non-stop private air travel connecting major global cities with guaranteed direct departure slots.
         </p>
       </div>
 
       {/* Cinematic Clouds & Airliner Stage */}
-      <div className="relative w-full h-[450px] my-4 pointer-events-none overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-[460px] my-10 pointer-events-none overflow-hidden flex items-center justify-center">
         {/* Background Clouds */}
         <img
           ref={cloudBackRef}
@@ -173,18 +174,18 @@ export const AirplaneFlyby: React.FC = () => {
         />
       </div>
 
-      {/* 3 Modern Feature Cards: Crisp Square Corners */}
-      <div className="relative z-20 max-w-[1400px] mx-auto px-6 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* 3 Modern Feature Cards */}
+      <div className="relative z-20 max-w-[1400px] mx-auto px-6 w-full mt-12 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((f, i) => (
             <div
               key={i}
-              className="flyby-card bg-white/95 backdrop-blur-md p-6 sm:p-8 rounded-none border border-[rgba(10,10,9,0.12)] shadow-md hover:shadow-xl transition-all duration-200 hover:-translate-y-1"
+              className="flyby-card bg-white/90 backdrop-blur-md p-8 rounded-2xl border border-white/80 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="inline-block px-2.5 py-1 text-[11px] font-bold text-[#E8431A] bg-[#E8431A]/10 rounded-none mb-3">
+              <div className="inline-block px-3 py-1 text-[11px] font-bold text-[#E8431A] bg-[#E8431A]/10 rounded-full mb-4">
                 {f.metric}
               </div>
-              <h3 className="font-display text-2xl text-[#0A0A09] mb-2">{f.title}</h3>
+              <h3 className="font-display text-2xl text-[#0A0A09] mb-3">{f.title}</h3>
               <p className="text-xs sm:text-sm text-[#0A0A09]/75 leading-relaxed">{f.desc}</p>
             </div>
           ))}

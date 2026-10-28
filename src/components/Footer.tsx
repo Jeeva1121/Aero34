@@ -51,13 +51,13 @@ export const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-[#0A0A09] text-white pt-20 pb-12 relative overflow-hidden">
+    <footer ref={footerRef} className="bg-[#0A0A09] text-[#EEEBE4] pt-20 pb-12 relative overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Route Corridors Network Map */}
         <div className="mb-14 overflow-hidden border-b border-white/10 pb-10">
           <div className="flex justify-between items-center mb-4">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Global Flight Corridors</span>
-            <span className="text-xs text-white/50">12 Direct Routes</span>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Direct Global Routes</span>
+            <span className="text-xs text-white/50">12 Non-Stop Cities</span>
           </div>
           <svg
             ref={mapSvgRef}
@@ -73,9 +73,9 @@ export const Footer: React.FC = () => {
             <path d="M 580 140 Q 720 180 840 210" strokeWidth="1.5" />
 
             <circle cx="120" cy="180" r="3" fill="#E8431A" />
-            <circle cx="580" cy="140" r="3" fill="#FFFFFF" />
+            <circle cx="580" cy="140" r="3" fill="#EEEBE4" />
             <circle cx="1080" cy="150" r="3" fill="#E8431A" />
-            <circle cx="840" cy="210" r="3" fill="#FFFFFF" />
+            <circle cx="840" cy="210" r="3" fill="#EEEBE4" />
           </svg>
         </div>
 

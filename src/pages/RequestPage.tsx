@@ -210,7 +210,7 @@ export const RequestPage: React.FC = () => {
   const selectedRouteObj = routes.find((r) => r.id === routeId);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-white py-16">
+    <div ref={containerRef} className="min-h-screen bg-[#EEEBE4] py-16">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="mb-10 pb-6 border-b border-[rgba(10,10,9,0.08)]">
           <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">
@@ -225,13 +225,13 @@ export const RequestPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Main 4-Step Form: Sharp Square Card */}
-          <div className="lg:col-span-8 bg-white rounded-none p-8 sm:p-12 border border-[rgba(10,10,9,0.12)] shadow-sm">
+          {/* Main 4-Step Form */}
+          <div className="lg:col-span-8 bg-white rounded-3xl p-8 sm:p-12 border border-[rgba(10,10,9,0.08)] shadow-sm">
             {/* Step Progress Line */}
-            <div className="w-full h-1.5 bg-[#0A0A09]/10 rounded-none mb-8 overflow-hidden">
+            <div className="w-full h-1.5 bg-[#0A0A09]/6 rounded-full mb-8 overflow-hidden">
               <div
                 ref={progressLineRef}
-                className="h-full bg-[#E8431A] origin-left rounded-none w-full"
+                className="h-full bg-[#E8431A] origin-left rounded-full w-full"
                 style={{ transform: 'scaleX(0.25)' }}
               />
             </div>
@@ -268,7 +268,7 @@ export const RequestPage: React.FC = () => {
                     <select
                       value={routeId}
                       onChange={(e) => setRouteId(e.target.value)}
-                      className="w-full p-4 rounded-none bg-[#F9FAFB] border border-[rgba(10,10,9,0.12)] text-sm font-medium text-[#0A0A09] focus:border-[#E8431A] outline-none"
+                      className="w-full p-4 rounded-xl bg-[#F7F5F0] border border-black/15 text-sm font-medium text-[#0A0A09] focus:outline-none focus:ring-1 focus:ring-[#E8431A]"
                     >
                       {routes.map((r) => (
                         <option key={r.id} value={r.id}>
@@ -278,11 +278,11 @@ export const RequestPage: React.FC = () => {
                     </select>
 
                     {selectedRouteObj && (
-                      <div className="mt-4 p-4 rounded-none bg-[#F9FAFB] border border-[rgba(10,10,9,0.08)] text-xs space-y-1">
+                      <div className="mt-4 p-4 rounded-xl bg-[#F7F5F0] border border-black/10 text-xs space-y-1">
                         <div className="font-bold text-sm text-[#0A0A09]">
                           {selectedRouteObj.originCity} to {selectedRouteObj.destCity}
                         </div>
-                        <div className="text-[#0A0A09]/60 font-mono">
+                        <div className="text-[#0A0A09]/60">
                           {selectedRouteObj.distanceKm.toLocaleString()} KM • {selectedRouteObj.blockTime} Non-stop
                         </div>
                         <div className="text-[#E8431A] font-semibold pt-1">
@@ -305,8 +305,7 @@ export const RequestPage: React.FC = () => {
                         value={dates}
                         onChange={(e) => setDates(e.target.value)}
                         onBlur={(e) => validateField('dates', e.target.value)}
-                        min={new Date().toISOString().slice(0, 10)}
-                        className="w-full p-4 rounded-none bg-[#F9FAFB] border border-[rgba(10,10,9,0.12)] text-sm font-medium text-[#0A0A09] focus:border-[#E8431A] outline-none"
+                        className="w-full p-4 rounded-xl bg-[#F7F5F0] border border-black/15 text-sm font-medium text-[#0A0A09] focus:outline-none focus:ring-1 focus:ring-[#E8431A]"
                       />
                       {errors.dates && <p className="text-xs text-[#E8431A] mt-1">{errors.dates}</p>}
                     </div>
@@ -321,7 +320,7 @@ export const RequestPage: React.FC = () => {
                         max="12"
                         value={partySize}
                         onChange={(e) => setPartySize(parseInt(e.target.value, 10) || 1)}
-                        className="w-full p-4 rounded-none bg-[#F9FAFB] border border-[rgba(10,10,9,0.12)] text-sm font-medium text-[#0A0A09] focus:border-[#E8431A] outline-none"
+                        className="w-full p-4 rounded-xl bg-[#F7F5F0] border border-black/15 text-sm font-medium text-[#0A0A09] focus:outline-none focus:ring-1 focus:ring-[#E8431A]"
                       />
                     </div>
                   </div>
@@ -340,7 +339,7 @@ export const RequestPage: React.FC = () => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         onBlur={(e) => validateField('name', e.target.value)}
-                        className="w-full p-4 rounded-none bg-[#F9FAFB] border border-[rgba(10,10,9,0.12)] text-sm font-medium text-[#0A0A09] focus:border-[#E8431A] outline-none"
+                        className="w-full p-4 rounded-xl bg-[#F7F5F0] border border-black/15 text-sm font-medium text-[#0A0A09] focus:outline-none focus:ring-1 focus:ring-[#E8431A]"
                       />
                       {errors.name && <p className="text-xs text-[#E8431A] mt-1">{errors.name}</p>}
                     </div>
@@ -355,7 +354,7 @@ export const RequestPage: React.FC = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         onBlur={(e) => validateField('email', e.target.value)}
-                        className="w-full p-4 rounded-none bg-[#F9FAFB] border border-[rgba(10,10,9,0.12)] text-sm font-medium text-[#0A0A09] focus:border-[#E8431A] outline-none"
+                        className="w-full p-4 rounded-xl bg-[#F7F5F0] border border-black/15 text-sm font-medium text-[#0A0A09] focus:outline-none focus:ring-1 focus:ring-[#E8431A]"
                       />
                       {errors.email && <p className="text-xs text-[#E8431A] mt-1">{errors.email}</p>}
                     </div>
@@ -369,7 +368,7 @@ export const RequestPage: React.FC = () => {
                         placeholder="e.g. Quiet cabin protocol or ground transport transfer upon arrival."
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
-                        className="w-full p-4 rounded-none bg-[#F9FAFB] border border-[rgba(10,10,9,0.12)] text-sm font-medium text-[#0A0A09] focus:border-[#E8431A] outline-none"
+                        className="w-full p-4 rounded-xl bg-[#F7F5F0] border border-black/15 text-sm font-medium text-[#0A0A09] focus:outline-none focus:ring-1 focus:ring-[#E8431A]"
                       />
                     </div>
                   </div>
@@ -378,7 +377,7 @@ export const RequestPage: React.FC = () => {
                 {/* Step 4: Review & Send */}
                 {currentStep === 4 && (
                   <div className="space-y-6">
-                    <div className="p-6 rounded-none bg-[#F9FAFB] border border-[rgba(10,10,9,0.08)] space-y-3 text-xs">
+                    <div className="p-6 rounded-2xl bg-[#F7F5F0] border border-[rgba(10,10,9,0.06)] space-y-3 text-xs">
                       <div className="flex justify-between py-2 border-b border-[rgba(10,10,9,0.06)]">
                         <span className="text-[#0A0A09]/60">Route</span>
                         <span className="font-bold text-[#0A0A09]">{selectedRouteObj?.originCity} → {selectedRouteObj?.destCity}</span>
@@ -408,7 +407,7 @@ export const RequestPage: React.FC = () => {
                     </div>
 
                     {submitError && (
-                      <div className="p-4 rounded-none bg-[#E8431A]/10 border border-[#E8431A] text-xs text-[#E8431A]">
+                      <div className="p-4 rounded-xl bg-[#E8431A]/10 border border-[#E8431A] text-xs text-[#E8431A]">
                         {submitError}
                       </div>
                     )}
@@ -421,7 +420,7 @@ export const RequestPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setCurrentStep((prev) => Math.max(1, prev - 1))}
-                      className="px-5 py-2.5 rounded-none border border-[#0A0A09] text-[#0A0A09] hover:bg-[#0A0A09] hover:text-white text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer"
+                      className="px-5 py-2.5 rounded-full border border-[#0A0A09] text-[#0A0A09] hover:bg-[#0A0A09] hover:text-white text-xs font-semibold transition-all duration-200 cursor-pointer"
                     >
                       ← Back
                     </button>
@@ -431,7 +430,7 @@ export const RequestPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={handleNextStep}
-                      className="px-6 py-2.5 rounded-none bg-[#0A0A09] text-white hover:bg-[#E8431A] text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer"
+                      className="px-6 py-2.5 rounded-full bg-[#0A0A09] text-white hover:bg-[#E8431A] text-xs font-semibold transition-all duration-200 cursor-pointer"
                     >
                       Continue →
                     </button>
@@ -440,7 +439,7 @@ export const RequestPage: React.FC = () => {
                       ref={magneticBtnRef}
                       type="submit"
                       disabled={submitting}
-                      className="px-8 py-3 rounded-none bg-[#E8431A] text-white hover:bg-[#0A0A09] text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer shadow-sm"
+                      className="px-8 py-3 rounded-full bg-[#E8431A] text-white hover:bg-[#0A0A09] text-xs font-bold transition-all duration-200 cursor-pointer shadow-lg"
                     >
                       {submitting ? 'Submitting...' : 'Confirm Request'}
                     </button>
@@ -448,8 +447,8 @@ export const RequestPage: React.FC = () => {
                 </div>
               </form>
             ) : (
-              /* Success Confirmation Card: Sharp Square Ticket */
-              <div ref={ticketRef} className="p-8 rounded-none bg-[#F9FAFB] border border-[rgba(10,10,9,0.12)]">
+              /* Success Confirmation Card */
+              <div ref={ticketRef} className="p-8 rounded-2xl bg-[#F7F5F0] border border-[rgba(10,10,9,0.08)]">
                 <div className="flex justify-between items-start pb-6 border-b border-dashed border-[#0A0A09]/20">
                   <div>
                     <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Confirmed</span>
@@ -487,7 +486,7 @@ export const RequestPage: React.FC = () => {
                       setLookupRefInput(confirmedRef);
                       handleLookup(confirmedRef);
                     }}
-                    className="px-5 py-2.5 rounded-none bg-[#0A0A09] text-white hover:bg-[#E8431A] transition-colors whitespace-nowrap font-bold uppercase tracking-wider text-xs cursor-pointer"
+                    className="px-5 py-2.5 rounded-full bg-[#0A0A09] text-white hover:bg-[#E8431A] transition-colors whitespace-nowrap font-semibold cursor-pointer"
                   >
                     Track Status Below ↓
                   </button>
@@ -496,8 +495,8 @@ export const RequestPage: React.FC = () => {
             )}
           </div>
 
-          {/* Sidebar Guarantee Card: Sharp Square Card */}
-          <div className="lg:col-span-4 bg-white rounded-none p-8 border border-[rgba(10,10,9,0.12)] shadow-sm space-y-6">
+          {/* Sidebar Guarantee Card */}
+          <div className="lg:col-span-4 bg-white rounded-3xl p-8 border border-[rgba(10,10,9,0.08)] shadow-sm space-y-6">
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Direct Service</span>
               <h3 className="font-display text-2xl text-[#0A0A09] mt-1 mb-3">Guaranteed Seat Booking</h3>
@@ -514,16 +513,16 @@ export const RequestPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Live Status Tracker: Sharp Modernist Square Container */}
-        <div className="mt-16 bg-[#0A0A09] text-white rounded-none p-8 sm:p-12 shadow-xl border border-[#0A0A09]">
+        {/* Live Status Tracker */}
+        <div className="mt-16 bg-[#0A0A09] text-white rounded-3xl p-8 sm:p-12 shadow-xl">
           <div className="flex flex-col sm:flex-row justify-between items-baseline mb-6">
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Live Tracker</span>
               <h2 className="font-display text-3xl sm:text-4xl mt-1 text-white">Track Flight Request</h2>
             </div>
             {isLiveConnected && (
-              <span className="text-xs text-[#E8431A] font-bold flex items-center gap-2 mt-2 sm:mt-0 uppercase tracking-wider">
-                <span className="w-2 h-2 rounded-none bg-[#E8431A] animate-pulse" />
+              <span className="text-xs text-[#E8431A] font-bold flex items-center gap-2 mt-2 sm:mt-0">
+                <span className="w-2 h-2 rounded-full bg-[#E8431A] animate-pulse" />
                 Live Connection Active
               </span>
             )}
@@ -535,24 +534,24 @@ export const RequestPage: React.FC = () => {
               placeholder="Enter reference code (e.g. AR-7K2Q9)"
               value={lookupRefInput}
               onChange={(e) => setLookupRefInput(e.target.value.toUpperCase())}
-              className="flex-1 p-3.5 rounded-none bg-white/10 border border-white/20 text-white font-mono text-sm uppercase placeholder:text-white/40 focus:border-[#E8431A] outline-none"
+              className="flex-1 p-3.5 rounded-xl bg-white/10 border border-white/20 font-mono text-sm text-white uppercase placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-[#E8431A]"
             />
             <button
               onClick={() => handleLookup()}
-              className="px-6 py-3.5 rounded-none bg-[#E8431A] text-white hover:bg-white hover:text-[#0A0A09] text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer shadow-sm"
+              className="px-6 py-3.5 rounded-xl bg-[#E8431A] text-white hover:bg-white hover:text-[#0A0A09] text-xs font-bold transition-all duration-200 cursor-pointer shadow-md"
             >
               Verify Status
             </button>
           </div>
 
           {lookupError && (
-            <div className="p-4 rounded-none bg-[#E8431A]/20 border border-[#E8431A] text-xs text-[#E8431A] max-w-xl mb-6">
+            <div className="p-4 rounded-xl bg-[#E8431A]/20 border border-[#E8431A] text-xs text-[#E8431A] max-w-xl mb-6">
               {lookupError}
             </div>
           )}
 
           {lookupResult && (
-            <div className="p-6 rounded-none border border-white/10 bg-white/5 space-y-6">
+            <div className="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-6">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-4 border-b border-white/10 gap-2">
                 <div>
                   <span className="text-[11px] font-mono text-white/50 block">Ref: {lookupResult.ref}</span>
@@ -579,7 +578,7 @@ export const RequestPage: React.FC = () => {
                     return (
                       <div
                         key={stepStatus}
-                        className={`p-3 rounded-none border transition-all ${
+                        className={`p-3 rounded-xl border transition-all ${
                           isActive
                             ? 'bg-[#E8431A] text-white border-[#E8431A]'
                             : isPassed
@@ -595,7 +594,7 @@ export const RequestPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="text-right text-[11px] text-white/40 pt-1 font-mono">
+              <div className="text-right text-[11px] text-white/40 pt-1">
                 Last updated: {new Date(lookupResult.updatedAt).toLocaleTimeString()}
               </div>
             </div>

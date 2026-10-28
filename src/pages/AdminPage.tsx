@@ -83,28 +83,28 @@ export const AdminPage: React.FC = () => {
 
   if (loadingAuth) {
     return (
-      <div className="min-h-screen py-32 grid-12 bg-white">
-        <div className="col-span-12 h-64 skeleton-bone rounded-none" />
+      <div className="min-h-screen py-32 grid-12 bg-[#EEEBE4]">
+        <div className="col-span-12 h-64 skeleton-bone" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white py-16">
+    <div className="min-h-screen bg-[#EEEBE4] py-16">
       <div className="grid-12">
         <div className="col-span-12 mb-10 pb-6 hairline-b flex flex-col md:flex-row justify-between items-baseline gap-4">
           <div>
-            <span className="micro-label">OPERATIONS CONSOLE</span>
-            <h1 className="font-display text-4xl md:text-5xl mt-2 tracking-tight text-[#0A0A09]">
-              Dispatch Administration
+            <span className="micro-label">OPERATIONAL CONTROL</span>
+            <h1 className="font-display text-4xl md:text-5xl mt-2 tracking-tight">
+              Flight Administration
             </h1>
           </div>
           {isAuthenticated && (
             <div className="flex items-center gap-4 text-xs tabular">
-              <span className="text-[var(--ink-60)]">AUTHENTICATED DISPATCHER</span>
+              <span className="text-(--ink-60)">AUTHENTICATED DISPATCHER</span>
               <button
                 onClick={handleLogout}
-                className="btn-editorial py-1.5 px-3 text-[11px] rounded-none"
+                className="btn-editorial py-1.5 px-3 text-[11px]"
               >
                 <span>Terminate Session</span>
               </button>
@@ -114,9 +114,9 @@ export const AdminPage: React.FC = () => {
 
         {!isAuthenticated ? (
           /* Login Form */
-          <div className="col-span-12 md:col-span-6 md:col-start-4 p-8 md:p-12 border border-[rgba(10,10,9,0.12)] bg-white rounded-none shadow-sm">
-            <span className="micro-label text-[var(--signal)]">AUTHENTICATION REQUIRED</span>
-            <h2 className="font-display text-2xl mt-2 mb-6 text-[#0A0A09]">Operations Clearance</h2>
+          <div className="col-span-12 md:col-span-6 md:col-start-4 p-8 md:p-12 hairline-all bg-[#F7F5F0]">
+            <span className="micro-label text-(--signal)">RESTRICTED DISPATCH ENTRY</span>
+            <h2 className="font-display text-2xl mt-2 mb-6">Operations Clearance</h2>
 
             <form onSubmit={handleLogin} className="space-y-6">
               <div>
@@ -127,7 +127,7 @@ export const AdminPage: React.FC = () => {
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="admin"
                   required
-                  className="w-full p-3.5 bg-[#F9FAFB] border border-[rgba(10,10,9,0.12)] font-mono text-sm focus:border-[var(--signal)] outline-none rounded-none text-[#0A0A09]"
+                  className="w-full p-3.5 bg-white border border-black/15 font-mono text-sm focus:outline-none focus:ring-1 focus:ring-(--signal)"
                 />
               </div>
 
@@ -139,12 +139,12 @@ export const AdminPage: React.FC = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
                   required
-                  className="w-full p-3.5 bg-[#F9FAFB] border border-[rgba(10,10,9,0.12)] font-mono text-sm focus:border-[var(--signal)] outline-none rounded-none text-[#0A0A09]"
+                  className="w-full p-3.5 bg-white border border-black/15 font-mono text-sm focus:outline-none focus:ring-1 focus:ring-(--signal)"
                 />
               </div>
 
               {loginError && (
-                <div className="p-3 bg-[#E8431A]/10 border border-[var(--signal)] text-xs text-[var(--signal)] rounded-none">
+                <div className="p-3 bg-[#E8431A]/10 border border-(--signal) text-xs text-(--signal)">
                   {loginError}
                 </div>
               )}
@@ -152,13 +152,13 @@ export const AdminPage: React.FC = () => {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="btn-editorial btn-signal w-full py-3 text-xs font-bold rounded-none"
+                  className="btn-editorial btn-signal w-full py-3 text-xs font-bold"
                 >
                   <span>Authenticate Dispatcher</span>
                 </button>
               </div>
 
-              <div className="text-[11px] text-[var(--ink-60)] tabular pt-2">
+              <div className="text-[11px] text-(--ink-60) tabular pt-2">
                 Five consecutive authentication failures enforce an automatic 15-minute operational lockout on the client IP address.
               </div>
             </form>
@@ -173,10 +173,10 @@ export const AdminPage: React.FC = () => {
                 <button
                   key={st}
                   onClick={() => handleFilterChange(st)}
-                  className={`py-1 px-3 text-xs tabular uppercase font-semibold border rounded-none transition-all ${
+                  className={`py-1 px-3 text-xs tabular uppercase font-semibold border transition-all ${
                     statusFilter === st
-                      ? 'bg-[#0A0A09] text-white border-[#0A0A09]'
-                      : 'bg-white text-[var(--ink-80)] border-[rgba(10,10,9,0.12)] hover:border-[#0A0A09]'
+                      ? 'bg-(--ink) text-(--bone) border-(--ink)'
+                      : 'bg-transparent text-(--ink-80) border-(--ink-12) hover:border-(--ink)'
                   }`}
                 >
                   {st.toUpperCase()}
@@ -185,16 +185,16 @@ export const AdminPage: React.FC = () => {
             </div>
 
             {/* Table */}
-            <div className="border border-[rgba(10,10,9,0.12)] bg-white rounded-none shadow-sm overflow-x-auto">
+            <div className="hairline-all bg-[#F7F5F0] overflow-x-auto">
               <table className="w-full text-left text-xs tabular border-collapse">
                 <thead>
-                  <tr className="border-b border-[rgba(10,10,9,0.08)] bg-[#F9FAFB] text-[var(--ink-60)] uppercase text-[10px] tracking-wider">
+                  <tr className="hairline-b bg-white text-(--ink-60) uppercase text-[10px] tracking-wider">
                     <th className="p-4">REF</th>
                     <th className="p-4">PASSENGER</th>
-                    <th className="p-4">CORRIDOR</th>
+                    <th className="p-4">ROUTE</th>
                     <th className="p-4">DATE & SEATS</th>
                     <th className="p-4">NOTES</th>
-                    <th className="p-4">DISPATCH STATUS</th>
+                    <th className="p-4">STATUS</th>
                     <th className="p-4 text-right">CREATED</th>
                   </tr>
                 </thead>
@@ -202,24 +202,24 @@ export const AdminPage: React.FC = () => {
                   {requests.map((r) => (
                     <tr
                       key={r.ref}
-                      className="border-b border-[rgba(10,10,9,0.06)] hover:bg-[#F9FAFB] transition-colors"
+                      className="hairline-b hover:bg-white/80 transition-colors"
                     >
-                      <td className="p-4 font-bold text-[var(--ink)] whitespace-nowrap">
+                      <td className="p-4 font-bold text-(--ink) whitespace-nowrap">
                         {r.ref}
                       </td>
                       <td className="p-4">
-                        <div className="font-semibold text-[var(--ink)]">{r.name}</div>
-                        <div className="text-[11px] text-[var(--ink-60)]">{r.email}</div>
+                        <div className="font-semibold text-(--ink)">{r.name}</div>
+                        <div className="text-[11px] text-(--ink-60)">{r.email}</div>
                       </td>
                       <td className="p-4 whitespace-nowrap">
                         <div>{r.routeTitle}</div>
-                        <div className="text-[11px] text-[var(--ink-60)]">{r.aircraft}</div>
+                        <div className="text-[11px] text-(--ink-60)">{r.aircraft}</div>
                       </td>
                       <td className="p-4 whitespace-nowrap">
                         <div>{r.dates}</div>
-                        <div className="text-[11px] text-[var(--ink-60)]">{r.partySize} SEATS</div>
+                        <div className="text-[11px] text-(--ink-60)">{r.partySize} SEATS</div>
                       </td>
-                      <td className="p-4 max-w-xs truncate text-[11px] text-[var(--ink-80)]">
+                      <td className="p-4 max-w-xs truncate text-[11px] text-(--ink-80)">
                         {r.note || '—'}
                       </td>
                       <td className="p-4 whitespace-nowrap">
@@ -227,14 +227,14 @@ export const AdminPage: React.FC = () => {
                           value={r.status}
                           disabled={updatingRef === r.ref}
                           onChange={(e) => handleStatusChange(r.ref, e.target.value)}
-                          className={`p-1.5 text-xs font-bold border rounded-none outline-none cursor-pointer ${
+                          className={`p-1.5 text-xs font-bold border outline-none cursor-pointer ${
                             r.status === 'Held'
                               ? 'bg-[#E8431A] text-white border-[#E8431A]'
                               : r.status === 'Confirming'
-                              ? 'bg-[#0A0A09] text-white border-[#0A0A09]'
+                              ? 'bg-(--ink) text-white border-(--ink)'
                               : r.status === 'Declined'
-                              ? 'bg-transparent text-[var(--ink-40)] border-[rgba(10,10,9,0.2)]'
-                              : 'bg-white text-[var(--ink)] border-[rgba(10,10,9,0.2)]'
+                              ? 'bg-transparent text-(--ink-40) border-(--ink-25)'
+                              : 'bg-white text-(--ink) border-(--ink-25)'
                           }`}
                         >
                           <option value="Received">Received</option>
@@ -243,14 +243,14 @@ export const AdminPage: React.FC = () => {
                           <option value="Declined">Declined</option>
                         </select>
                       </td>
-                      <td className="p-4 text-right text-[11px] text-[var(--ink-60)] whitespace-nowrap">
+                      <td className="p-4 text-right text-[11px] text-(--ink-60) whitespace-nowrap">
                         {new Date(r.createdAt).toLocaleDateString()}
                       </td>
                     </tr>
                   ))}
                   {requests.length === 0 && (
                     <tr>
-                      <td colSpan={7} className="p-8 text-center text-xs text-[var(--ink-60)]">
+                      <td colSpan={7} className="p-8 text-center text-xs text-(--ink-60)">
                         No requests found under current filter.
                       </td>
                     </tr>

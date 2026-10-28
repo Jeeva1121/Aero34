@@ -25,15 +25,15 @@ export const CabinPage: React.FC = () => {
 
           ScrollTrigger.create({
             trigger: card,
-            start: 'top 80px',
+            start: 'top 88px',
             endTrigger: cards[i + 1],
-            end: 'top 80px',
+            end: 'top 88px',
             pin: true,
             pinSpacing: false,
             scrub: true,
             animation: gsap.to(card, {
               scale: 0.96,
-              opacity: 0.8,
+              opacity: 0.65,
               ease: 'none',
             }),
           });
@@ -126,18 +126,18 @@ export const CabinPage: React.FC = () => {
   ];
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-white">
+    <div ref={containerRef} className="min-h-screen bg-[#EEEBE4]">
       {/* Header Section */}
-      <section className="pt-16 pb-12 border-b border-[rgba(10,10,9,0.08)]">
+      <section className="pt-20 pb-16 border-b border-black/10">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="max-w-3xl">
             <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">
               Cabin Architecture
             </span>
-            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl mt-2 tracking-tight text-[#0A0A09]">
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl mt-3 tracking-tight text-[#0A0A09] leading-tight">
               Quiet Comfort in the Sky.
             </h1>
-            <p className="text-sm sm:text-base text-[#0A0A09]/75 mt-4 leading-relaxed">
+            <p className="text-sm sm:text-base text-[#0A0A09]/75 mt-5 leading-relaxed font-light">
               Every cabin is engineered for continuous long-haul flight across oceans. Unmatched acoustic quietness, low cabin altitude, and private lie-flat suites.
             </p>
           </div>
@@ -145,7 +145,7 @@ export const CabinPage: React.FC = () => {
       </section>
 
       {/* Modern Velocity Marquee */}
-      <div className="py-4 border-b border-[rgba(10,10,9,0.08)] bg-[#0A0A09] text-white overflow-hidden whitespace-nowrap">
+      <div className="py-4 border-b border-[rgba(10,10,9,0.08)] bg-[#0A0A09] text-[#EEEBE4] overflow-hidden whitespace-nowrap">
         <div ref={marqueeTrackRef} className="flex gap-10 text-xs uppercase tracking-widest font-semibold">
           <span>• 48 dB WHISPER SOUND</span>
           <span>• 3,850 FT CABIN ALTITUDE</span>
@@ -159,13 +159,13 @@ export const CabinPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Stacked Cards Section: Crisp Square Cards */}
+      {/* Stacked Cards Section */}
       <section ref={stackWrapperRef} className="py-20 max-w-[1400px] mx-auto px-6">
         <div className="space-y-12">
           {cabinSpecs.map((spec) => (
             <div
               key={spec.label}
-              className="stack-card p-8 sm:p-12 rounded-none bg-white border border-[rgba(10,10,9,0.12)] shadow-md"
+              className="stack-card p-8 sm:p-12 rounded-3xl bg-white border border-[rgba(10,10,9,0.08)] shadow-lg"
             >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                 <div className="md:col-span-6">
@@ -179,7 +179,7 @@ export const CabinPage: React.FC = () => {
                     {spec.desc}
                   </p>
 
-                  <div className="p-4 rounded-none bg-[#F9FAFB] border border-[rgba(10,10,9,0.08)] inline-block">
+                  <div className="p-4 rounded-xl bg-[#F7F5F0] border border-[rgba(10,10,9,0.06)] inline-block">
                     <div className="font-display text-3xl sm:text-4xl font-bold text-[#E8431A]">
                       {spec.stat}
                     </div>
@@ -189,7 +189,7 @@ export const CabinPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="md:col-span-6 h-[320px] sm:h-[400px] rounded-none overflow-hidden border border-[rgba(10,10,9,0.08)]">
+                <div className="md:col-span-6 h-[320px] sm:h-[400px] rounded-2xl overflow-hidden shadow-inner">
                   <img src={spec.photo} alt={spec.headline} className="w-full h-full object-cover" />
                 </div>
               </div>
@@ -198,10 +198,10 @@ export const CabinPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Cloud Parting Section: Crisp Square Frame */}
+      {/* Cloud Parting Section */}
       <section
         ref={cloudSectionRef}
-        className="min-h-[75vh] relative overflow-hidden bg-[#0A0A09] text-white flex items-center justify-center p-8 rounded-none max-w-[1400px] mx-auto my-12 border border-[#0A0A09]"
+        className="min-h-[75vh] relative overflow-hidden bg-[#0A0A09] text-[#EEEBE4] flex items-center justify-center p-8 rounded-3xl max-w-[1400px] mx-auto my-12"
       >
         <img
           ref={cloud1Ref}
@@ -235,7 +235,7 @@ export const CabinPage: React.FC = () => {
           <div className="mt-8">
             <Link
               href="/request"
-              className="inline-flex items-center justify-center px-6 py-3.5 rounded-none bg-[#E8431A] text-white hover:bg-white hover:text-[#0A0A09] font-bold text-xs uppercase tracking-wider transition-all duration-200 no-underline shadow-sm"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#E8431A] text-white hover:bg-white hover:text-[#0A0A09] font-semibold text-xs uppercase tracking-wider transition-all duration-300 no-underline shadow-lg"
             >
               <span>Request a Seat</span>
             </Link>

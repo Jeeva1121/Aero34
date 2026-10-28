@@ -151,16 +151,16 @@ export const RouteDetailPage: React.FC = () => {
 
   if (!route) {
     return (
-      <div className="min-h-screen py-32 text-center">
-        <span className="micro-label text-[var(--signal)]">404 DISPATCH EXCEPTION</span>
-        <h1 className="font-display text-4xl mt-3 mb-6">Corridor Not Found</h1>
-        <Link href="/routes" className="btn-editorial">Return to Corridors</Link>
+      <div className="min-h-screen py-32 text-center bg-[#EEEBE4]">
+        <span className="micro-label text-(--signal)">ROUTE NOT FOUND</span>
+        <h1 className="font-display text-4xl mt-3 mb-6">Route Not Found</h1>
+        <Link href="/routes" className="btn-editorial">Return to Routes</Link>
       </div>
     );
   }
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-white">
+    <div ref={containerRef} className="min-h-screen bg-[#EEEBE4]">
       {/* Hero Header: Photo Grows into Page Header */}
       <section className="relative h-[65vh] w-full overflow-hidden hairline-b">
         <img
@@ -198,40 +198,40 @@ export const RouteDetailPage: React.FC = () => {
       <div className="grid-12 py-16">
         {/* Sticky Left Column: Telemetry Facts */}
         <div className="col-span-12 lg:col-span-4 mb-12 lg:mb-0">
-          <div ref={stickyColRef} className="p-8 rounded-none bg-white border border-[rgba(10,10,9,0.12)] shadow-sm">
+          <div ref={stickyColRef} className="p-8 rounded-2xl bg-white border border-[rgba(10,10,9,0.08)] shadow-sm">
             <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Aircraft Specifications</span>
             <h2 className="font-display text-2xl mt-2 mb-6 text-[#0A0A09]">{route.aircraft}</h2>
 
-            <div className="space-y-4 text-xs tabular text-[var(--ink-80)]">
+            <div className="space-y-4 text-xs tabular text-(--ink-80)">
               <div className="flex justify-between py-2 border-b border-[rgba(10,10,9,0.08)]">
                 <span className="text-[#0A0A09]/60">Flight Duration</span>
-                <span className="font-bold text-[var(--ink)]">{route.blockTime}</span>
+                <span className="font-bold text-(--ink)">{route.blockTime}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-[rgba(10,10,9,0.08)]">
                 <span className="text-[#0A0A09]/60">Cruising Altitude</span>
-                <span className="font-bold text-[var(--ink)]">{(route.altitudeFeet).toLocaleString()} Feet</span>
+                <span className="font-bold text-(--ink)">{(route.altitudeFeet).toLocaleString()} Feet</span>
               </div>
               <div className="flex justify-between py-2 border-b border-[rgba(10,10,9,0.08)]">
                 <span className="text-[#0A0A09]/60">Flight Distance</span>
-                <span className="font-bold text-[var(--ink)]">{route.distanceKm.toLocaleString()} KM</span>
+                <span className="font-bold text-(--ink)">{route.distanceKm.toLocaleString()} KM</span>
               </div>
               <div className="flex justify-between py-2 border-b border-[rgba(10,10,9,0.08)]">
                 <span className="text-[#0A0A09]/60">Certified Capacity</span>
-                <span className="font-bold text-[var(--ink)]">{route.totalSeats} Passengers</span>
+                <span className="font-bold text-(--ink)">{route.totalSeats} Passengers</span>
               </div>
               <div className="flex justify-between py-2 border-b border-[rgba(10,10,9,0.08)]">
                 <span className="text-[#0A0A09]/60">Interior Layout</span>
-                <span className="font-bold text-[var(--ink)] text-right max-w-[180px]">{route.cabinLayout}</span>
+                <span className="font-bold text-(--ink) text-right max-w-[180px]">{route.cabinLayout}</span>
               </div>
             </div>
 
             <div className="mt-8 pt-6 border-t border-[rgba(10,10,9,0.08)]">
-              <p className="text-xs text-[var(--ink-80)] leading-relaxed mb-6">
+              <p className="text-xs text-(--ink-80) leading-relaxed mb-6">
                 {route.overview}
               </p>
               <Link
                 href={`/request?route=${route.id}`}
-                className="w-full py-3 px-6 text-center text-xs font-semibold rounded-none bg-[#E8431A] text-white hover:bg-[#0A0A09] transition-colors duration-200 block no-underline shadow-sm"
+                className="w-full py-3 px-6 text-center text-xs font-semibold rounded-full bg-[#E8431A] text-white hover:bg-[#0A0A09] transition-colors duration-200 block no-underline shadow-sm"
               >
                 <span>Request Seats on this Route</span>
               </Link>
@@ -242,7 +242,7 @@ export const RouteDetailPage: React.FC = () => {
         {/* Right Column: Availability Calendar & Seat Map */}
         <div id="right-content-col" className="col-span-12 lg:col-span-8 space-y-12 pl-0 lg:pl-6">
           {/* Availability Calendar */}
-          <div className="p-8 rounded-none bg-white border border-[rgba(10,10,9,0.12)] shadow-sm">
+          <div className="p-8 rounded-2xl bg-white border border-[rgba(10,10,9,0.08)] shadow-sm">
             <div className="flex justify-between items-baseline mb-6">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Schedule</span>
@@ -253,7 +253,7 @@ export const RouteDetailPage: React.FC = () => {
 
             <div ref={calendarRef} className="grid grid-cols-7 gap-2">
               {['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map((d) => (
-                <div key={d} className="text-center text-[10px] font-bold text-[var(--ink-60)] pb-2">
+                <div key={d} className="text-center text-[10px] font-bold text-(--ink-60) pb-2">
                   {d}
                 </div>
               ))}
@@ -265,20 +265,20 @@ export const RouteDetailPage: React.FC = () => {
                 return (
                   <div
                     key={day.date}
-                    className={`cal-day p-3 text-center rounded-none border transition-colors ${
+                    className={`cal-day p-3 text-center rounded-xl border transition-colors ${
                       isFull
-                        ? 'border-[rgba(10,10,9,0.08)] bg-[#F4F4F5] opacity-40'
+                        ? 'border-(--ink-12) bg-[#EEEBE4]/40 opacity-40'
                         : isLimited
-                        ? 'border-[var(--signal)] bg-[#E8431A]/5'
-                        : 'border-[rgba(10,10,9,0.12)] bg-white hover:border-[var(--ink)]'
+                        ? 'border-(--signal) bg-[#E8431A]/5'
+                        : 'border-(--ink-12) bg-white hover:border-(--ink)'
                     }`}
                   >
                     <div className="text-xs font-bold tabular">{dayNum}</div>
                     <div className="text-[10px] tabular mt-1">
                       {isFull ? (
-                        <span className="text-[var(--ink-40)]">FULL</span>
+                        <span className="text-(--ink-40)">FULL</span>
                       ) : (
-                        <span className={isLimited ? 'text-[var(--signal)] font-bold' : 'text-[var(--ink-60)]'}>
+                        <span className={isLimited ? 'text-(--signal) font-bold' : 'text-(--ink-60)'}>
                           {day.seatsLeft} left
                         </span>
                       )}
@@ -288,21 +288,21 @@ export const RouteDetailPage: React.FC = () => {
               })}
             </div>
 
-            <div className="flex gap-6 mt-6 pt-4 border-t border-[rgba(10,10,9,0.08)] text-xs tabular text-[var(--ink-60)]">
+            <div className="flex gap-6 mt-6 pt-4 border-t border-[rgba(10,10,9,0.08)] text-xs tabular text-(--ink-60)">
               <span className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 bg-white border border-[rgba(10,10,9,0.2)] rounded-none" /> Available
+                <span className="w-2.5 h-2.5 bg-white border border-(--ink-12) rounded" /> Available
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 bg-[#E8431A]/20 border border-[var(--signal)] rounded-none" /> Limited (≤3)
+                <span className="w-2.5 h-2.5 bg-[#E8431A]/20 border border-(--signal) rounded" /> Limited (≤3)
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 bg-[#F4F4F5] border border-[rgba(10,10,9,0.2)] rounded-none" /> Reserved
+                <span className="w-2.5 h-2.5 bg-[#EEEBE4]/60 border border-(--ink-12) rounded" /> Reserved
               </span>
             </div>
           </div>
 
           {/* Interactive SVG Cabin Seat Map */}
-          <div className="p-8 rounded-none bg-white border border-[rgba(10,10,9,0.12)] shadow-sm">
+          <div className="p-8 rounded-2xl bg-white border border-[rgba(10,10,9,0.08)] shadow-sm">
             <div className="flex justify-between items-baseline mb-6">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">Interior Map</span>
@@ -311,7 +311,7 @@ export const RouteDetailPage: React.FC = () => {
               <span className="text-xs font-medium text-[#0A0A09]/60">Scale 1:50</span>
             </div>
 
-            <div className="flex justify-center p-6 bg-white border border-[rgba(10,10,9,0.12)] relative">
+            <div className="flex justify-center p-6 bg-white border border-(--ink-12) relative">
               <svg
                 ref={seatMapRef}
                 viewBox="0 0 320 540"
@@ -333,82 +333,82 @@ export const RouteDetailPage: React.FC = () => {
                 {/* Forward Zone 1 Club Seats */}
                 <g className="seat-row">
                   <rect
-                    x="85" y="130" width="36" height="42" rx="0"
+                    x="85" y="130" width="36" height="42" rx="2"
                     fill={hoveredSeat === '1A' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('1A')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
                   <rect
-                    x="195" y="130" width="36" height="42" rx="0"
+                    x="195" y="130" width="36" height="42" rx="2"
                     fill={hoveredSeat === '1F' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('1F')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
-                  <text x="103" y="156" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">1A</text>
-                  <text x="213" y="156" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">1F</text>
+                  <text x="103" y="156" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">1A</text>
+                  <text x="213" y="156" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">1F</text>
                 </g>
 
                 <g className="seat-row">
                   <rect
-                    x="85" y="195" width="36" height="42" rx="0"
+                    x="85" y="195" width="36" height="42" rx="2"
                     fill={hoveredSeat === '2A' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('2A')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
                   <rect
-                    x="195" y="195" width="36" height="42" rx="0"
+                    x="195" y="195" width="36" height="42" rx="2"
                     fill={hoveredSeat === '2F' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('2F')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
-                  <text x="103" y="221" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">2A</text>
-                  <text x="213" y="221" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">2F</text>
+                  <text x="103" y="221" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">2A</text>
+                  <text x="213" y="221" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">2F</text>
                 </g>
 
                 {/* Mid Zone 2 Conference / Dining Table */}
-                <rect x="125" y="255" width="70" height="50" rx="0" fill="#F4F4F5" stroke="#0A0A09" strokeWidth="1" strokeOpacity="0.3" />
+                <rect x="125" y="255" width="70" height="50" rx="1" fill="#EEEBE4" stroke="#0A0A09" strokeWidth="1" strokeOpacity="0.4" />
                 <text x="160" y="284" fill="#0A0A09" fontSize="9" textAnchor="middle" letterSpacing="0.1em">TABLE</text>
 
                 <g className="seat-row">
                   <rect
-                    x="85" y="260" width="36" height="42" rx="0"
+                    x="85" y="260" width="36" height="42" rx="2"
                     fill={hoveredSeat === '3A' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('3A')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
                   <rect
-                    x="195" y="260" width="36" height="42" rx="0"
+                    x="195" y="260" width="36" height="42" rx="2"
                     fill={hoveredSeat === '3F' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('3F')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
-                  <text x="103" y="286" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">3A</text>
-                  <text x="213" y="286" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">3F</text>
+                  <text x="103" y="286" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">3A</text>
+                  <text x="213" y="286" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">3F</text>
                 </g>
 
                 {/* Rear Zone 3 Private Stateroom Suite */}
                 <g className="seat-row">
                   <rect
-                    x="85" y="340" width="146" height="70" rx="0"
+                    x="85" y="340" width="146" height="70" rx="2"
                     fill={hoveredSeat === 'MASTER-SUITE' ? '#E8431A' : '#0A0A09'}
                     cursor="pointer"
                     onMouseEnter={() => setHoveredSeat('MASTER-SUITE')}
                     onMouseLeave={() => setHoveredSeat(null)}
                   />
-                  <text x="158" y="380" fill="#FFFFFF" fontSize="11" textAnchor="middle" fontWeight="bold">
-                    MASTER STATEROOM • LIE-FLAT DOUBLE
+                  <text x="158" y="380" fill="#EEEBE4" fontSize="11" textAnchor="middle" fontWeight="bold">
+                    PRIVATE SUITE • LIE-FLAT DOUBLE
                   </text>
                 </g>
               </svg>
 
               {hoveredSeat && (
-                <div className="absolute top-4 right-4 bg-[#0A0A09] text-white px-3 py-1 text-xs tabular font-bold border border-[#E8431A]">
+                <div className="absolute top-4 right-4 bg-[#0A0A09] text-[#EEEBE4] px-3 py-1 text-xs tabular font-bold border border-[#E8431A]">
                   SEAT {hoveredSeat}: CONFIRMED LIE-FLAT 82&quot;
                 </div>
               )}
@@ -418,7 +418,7 @@ export const RouteDetailPage: React.FC = () => {
       </div>
 
       {/* 5. Pinned Canvas Airframe Turn Section */}
-      <section id="airframe-turn-section" className="min-h-screen border-t border-[rgba(10,10,9,0.08)] bg-[#0A0A09] text-white flex flex-col justify-between p-12 relative overflow-hidden">
+      <section id="airframe-turn-section" className="min-h-screen border-t border-[rgba(10,10,9,0.08)] bg-[#0A0A09] text-[#EEEBE4] flex flex-col justify-between p-12 relative overflow-hidden">
         <div className="flex justify-between items-baseline z-10">
           <div>
             <span className="text-[11px] font-bold uppercase tracking-wider text-[#E8431A]">360° Perspective</span>
@@ -441,7 +441,7 @@ export const RouteDetailPage: React.FC = () => {
         <div className="flex justify-between items-center text-xs tabular text-white/50 z-10 pt-4 border-t border-white/10">
           <span>AIRCRAFT: {route.aircraft}</span>
           <span>PINNED SCRUB 250% • ROTATION TIED TO SCROLL</span>
-          <Link href={`/request?route=${route.id}`} className="btn-editorial bg-white text-[#0A0A09] hover:bg-[#E8431A] hover:text-white border-none py-2 px-5 rounded-none">
+          <Link href={`/request?route=${route.id}`} className="btn-editorial bg-white text-[#0A0A09] hover:bg-[#E8431A] hover:text-white border-none py-2 px-5">
             <span>Reserve Route</span>
           </Link>
         </div>
