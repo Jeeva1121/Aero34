@@ -22,13 +22,10 @@ export default function Header({
   const [hoveredNav, setHoveredNav] = useState(null);
 
   const navItems = [
-    { id: 'window', label: 'The Window' },
     { id: 'flyby', label: 'Flight' },
     { id: 'destinations', label: 'Destinations' },
-    { id: 'experience', label: 'Sanctuary' },
+    { id: 'experience', label: 'Experience' },
     { id: 'routes', label: 'Corridors' },
-    { id: 'diorama', label: 'Perspectives' },
-    { id: 'boarding', label: 'Boarding' },
   ];
 
   useEffect(() => {
@@ -163,7 +160,7 @@ export default function Header({
         aria-label="Aero 34 Home"
       >
         <img
-          src="/logo-wings.png"
+          src="/logo.png"
           alt="Aero 34"
           className="brand-logo-img"
         />
