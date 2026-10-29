@@ -1,28 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      '@': path.resolve(import.meta.dirname, './src'),
-      '@shared': path.resolve(import.meta.dirname, './shared'),
-    },
-  },
-  server: {
-    port: 5173,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-      },
-    },
-  },
+  plugins: [react()],
   build: {
-    sourcemap: false,
-    chunkSizeWarningLimit: 900,
+    sourcemap: false, // Prevents leaking internal source code or debug paths in production
   },
 })

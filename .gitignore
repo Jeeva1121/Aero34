@@ -36,7 +36,5 @@ Thumbs.db
 # Root screenshots and temp duplicates
 /image*.png
 /7000322_Tourism_Travel_1920x1080.mp4
-
-# SQLite Database and Backups
-data/*.db*
-data/backups/*
+data/
+*.db*
