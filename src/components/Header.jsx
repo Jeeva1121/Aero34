@@ -163,7 +163,7 @@ export default function Header({
         aria-label="Aero 34 Home"
       >
         <img
-          src="/logo.png"
+          src="/logo-wings.png"
           alt="Aero 34"
           className="brand-logo-img"
         />

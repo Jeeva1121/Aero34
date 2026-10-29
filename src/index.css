@@ -312,17 +312,18 @@ a {
 }
 
 .brand-logo-img {
-  height: 56px;
+  height: 62px;
   width: auto;
-  max-width: 200px;
+  max-width: 220px;
   object-fit: contain;
-  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.8));
-  transition: transform 0.25s ease;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.25));
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
   display: block;
 }
 
 .brand-block:hover .brand-logo-img {
-  transform: scale(1.05);
+  transform: scale(1.08) translateY(-1px);
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.45));
 }
 
 .brand-name {
