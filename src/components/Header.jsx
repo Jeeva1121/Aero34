@@ -30,9 +30,9 @@ export default function Header({
 
   useEffect(() => {
     const handleWheel = (e) => {
-      if (e.deltaY > 1) {
+      if (e.deltaY > 3) {
         setIsVisible(false);
-      } else if (e.deltaY < -1) {
+      } else if (e.deltaY < -3) {
         setIsVisible(true);
       }
     };
@@ -47,9 +47,9 @@ export default function Header({
       if (!e.touches || !e.touches[0]) return;
       const currentTouchY = e.touches[0].clientY;
       const diff = touchStartY - currentTouchY;
-      if (diff > 2) {
+      if (diff > 4) {
         setIsVisible(false);
-      } else if (diff < -2) {
+      } else if (diff < -4) {
         setIsVisible(true);
       }
       touchStartY = currentTouchY;
@@ -57,11 +57,16 @@ export default function Header({
 
     const handleScroll = (y) => {
       const currentY = Math.max(0, y);
+      if (currentY <= 40) {
+        setIsVisible(true);
+        lastScrollY.current = currentY;
+        return;
+      }
       const delta = currentY - lastScrollY.current;
 
-      if (delta > 1) {
+      if (delta > 3) {
         setIsVisible(false);
-      } else if (delta < -1) {
+      } else if (delta < -3) {
         setIsVisible(true);
       }
 
@@ -72,17 +77,35 @@ export default function Header({
       handleScroll(window.scrollY);
     };
 
+    // Reveal navbar when cursor moves within top 55px of the viewport
+    const onMouseMove = (e) => {
+      if (e.clientY <= 55) {
+        setIsVisible(true);
+      }
+    };
+
+    // Toggle with Escape key
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsVisible((prev) => !prev);
+      }
+    };
+
     window.addEventListener('wheel', handleWheel, { passive: true, capture: true });
     document.addEventListener('wheel', handleWheel, { passive: true, capture: true });
     window.addEventListener('touchstart', handleTouchStart, { passive: true, capture: true });
     window.addEventListener('touchmove', handleTouchMove, { passive: true, capture: true });
     window.addEventListener('scroll', onNativeScroll, { passive: true });
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('keydown', onKeyDown);
 
     let lenisUnsub = null;
     const hookLenis = () => {
       if (window.__lenis && !lenisUnsub) {
         const handler = (e) => {
-          if (e.direction === 1 || e.velocity > 0.05) {
+          if (e.scroll <= 40) {
+            setIsVisible(true);
+          } else if (e.direction === 1 || e.velocity > 0.05) {
             setIsVisible(false);
           } else if (e.direction === -1 || e.velocity < -0.05) {
             setIsVisible(true);
@@ -102,10 +125,27 @@ export default function Header({
       window.removeEventListener('touchstart', handleTouchStart, { capture: true });
       window.removeEventListener('touchmove', handleTouchMove, { capture: true });
       window.removeEventListener('scroll', onNativeScroll);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('keydown', onKeyDown);
       clearTimeout(lenisTimer);
       if (lenisUnsub) lenisUnsub();
     };
   }, []);
+
+  const handleNavClick = (targetId) => {
+    setIsVisible(false); // Hide navbar while moving smoothly to page/section
+    onNavigate(targetId);
+  };
+
+  const handleLogoClick = () => {
+    setIsVisible(true); // Return to top hero with navbar visible
+    onNavigate('window');
+  };
+
+  const handleReserveClick = () => {
+    setIsVisible(false); // Hide navbar while moving down to ticket section
+    onNavigate('boarding');
+  };
 
   const moveIndicatorTo = (targetId, immediate = false) => {
     const cluster = navClusterRef.current;
@@ -155,7 +195,7 @@ export default function Header({
       {/* Brand Mark with User Logo (Text completely removed) */}
       <div
         className="brand-block"
-        onClick={() => onNavigate('window')}
+        onClick={handleLogoClick}
         style={{ cursor: 'pointer' }}
         aria-label="Aero 34 Home"
       >
@@ -184,7 +224,7 @@ export default function Header({
               key={item.id}
               ref={(el) => (itemRefs.current[item.id] = el)}
               className={`luxe-nav-item ${isActive ? 'is-active' : ''}`}
-              onClick={() => onNavigate(item.id)}
+              onClick={() => handleNavClick(item.id)}
               onMouseEnter={() => setHoveredNav(item.id)}
             >
               <span className="nav-title">{item.label}</span>
@@ -199,7 +239,7 @@ export default function Header({
           <button
             type="button"
             className="modern-header-reserve-btn"
-            onClick={() => onNavigate('boarding')}
+            onClick={handleReserveClick}
             aria-label="Reserve Flight"
           >
             <span>Reserve Seat</span>
